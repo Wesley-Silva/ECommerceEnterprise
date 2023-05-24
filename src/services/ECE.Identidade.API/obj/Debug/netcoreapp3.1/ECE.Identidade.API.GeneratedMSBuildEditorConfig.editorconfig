@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = ECE.Identidade.API
+build_property.ProjectDir = C:\dev\ECommerceEnterprise\src\services\ECE.Identidade.API\
