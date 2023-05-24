@@ -1,0 +1,10 @@
+C:\dev\ECommerceEnterprise\src\building blocks\ECE.Core\bin\Debug\netcoreapp3.1\ECE.Core.deps.json
+C:\dev\ECommerceEnterprise\src\building blocks\ECE.Core\bin\Debug\netcoreapp3.1\ECE.Core.dll
+C:\dev\ECommerceEnterprise\src\building blocks\ECE.Core\bin\Debug\netcoreapp3.1\ECE.Core.pdb
+C:\dev\ECommerceEnterprise\src\building blocks\ECE.Core\obj\Debug\netcoreapp3.1\ECE.Core.csproj.AssemblyReference.cache
+C:\dev\ECommerceEnterprise\src\building blocks\ECE.Core\obj\Debug\netcoreapp3.1\ECE.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\dev\ECommerceEnterprise\src\building blocks\ECE.Core\obj\Debug\netcoreapp3.1\ECE.Core.AssemblyInfoInputs.cache
+C:\dev\ECommerceEnterprise\src\building blocks\ECE.Core\obj\Debug\netcoreapp3.1\ECE.Core.AssemblyInfo.cs
+C:\dev\ECommerceEnterprise\src\building blocks\ECE.Core\obj\Debug\netcoreapp3.1\ECE.Core.csproj.CoreCompileInputs.cache
+C:\dev\ECommerceEnterprise\src\building blocks\ECE.Core\obj\Debug\netcoreapp3.1\ECE.Core.dll
+C:\dev\ECommerceEnterprise\src\building blocks\ECE.Core\obj\Debug\netcoreapp3.1\ECE.Core.pdb
