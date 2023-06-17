@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -21,7 +22,7 @@ namespace ECE.Identidade.API.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
 
-        public AuthController(SignInManager<IdentityUser> signInManager, 
+        public AuthController(SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
                               IOptions<AppSettings> appSettings)// [IOptions]opção de leitura do aspnetcore
         {
@@ -47,7 +48,7 @@ namespace ECE.Identidade.API.Controllers
 
             var result = await _userManager.CreateAsync(user, usuarioRegistro.Senha);
 
-            if (result.Succeeded) 
+            if (result.Succeeded)
             {
                 //await _signInManager.SignInAsync(user, false);
                 return CustomResponse(await GerarJwt(usuarioRegistro.Email));
@@ -71,7 +72,7 @@ namespace ECE.Identidade.API.Controllers
 
             var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
 
-            if (result.Succeeded) 
+            if (result.Succeeded)
             {
                 return CustomResponse(await GerarJwt(usuarioLogin.Email));
             }
@@ -90,6 +91,15 @@ namespace ECE.Identidade.API.Controllers
             //Clams usuário
             var user = await _userManager.FindByEmailAsync(email);
             var claims = await _userManager.GetClaimsAsync(user);
+
+            var identityClaims = await ObterClaimsUsuario(claims, user);
+            var encodedToken = CodificarToken(identityClaims);
+
+            return ObterRespostaToken(encodedToken, user, claims);
+        }
+
+        private async Task<ClaimsIdentity> ObterClaimsUsuario(ICollection<Claim> claims, IdentityUser user)
+        {
             var userRoles = await _userManager.GetRolesAsync(user);
 
             //Claims do token
@@ -110,6 +120,11 @@ namespace ECE.Identidade.API.Controllers
             var identityClaims = new ClaimsIdentity();
             identityClaims.AddClaims(claims);
 
+            return identityClaims;
+        }
+
+        private string CodificarToken(ClaimsIdentity identityClaims)
+        {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
 
@@ -122,9 +137,12 @@ namespace ECE.Identidade.API.Controllers
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             });
 
-            var encodedToken = tokenHandler.WriteToken(token);
+            return tokenHandler.WriteToken(token);
+        }
 
-            var response = new UsuarioRespostaLogin
+        private UsuarioRespostaLogin ObterRespostaToken(string encodedToken, IdentityUser user, IEnumerable<Claim> claims)
+        {
+            return new UsuarioRespostaLogin
             {
                 AccessToken = encodedToken,
                 ExpiresIn = TimeSpan.FromHours(_appSettings.ExpiracaoHoras).TotalSeconds,
@@ -132,10 +150,9 @@ namespace ECE.Identidade.API.Controllers
                 {
                     Id = user.Id,
                     Email = user.Email,
-                    Claims = claims.Select(c => new UsuarioClaim { Type = c.Type, Value = c.Value})
+                    Claims = claims.Select(c => new UsuarioClaim { Type = c.Type, Value = c.Value })
                 }
             };
-            return response;
         }
 
         private static long ToUnixEpochDate(DateTime date)

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>7692de71-90ba-412d-bd85-ab9b20bcc6e3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\" />
+    <Folder Include="ImagensTela\" />
   </ItemGroup>
 
 
