@@ -7,9 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{3A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "building blocks", "building blocks", "{D1BD8B29-C568-4F53-A308-CA4A68E77018}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECE.Identidade.API", "src\services\ECE.Identidade.API\ECE.Identidade.API.csproj", "{407BD0CF-4FC4-44FE-9028-483960A4D8FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECE.Identidade.API", "src\services\ECE.Identidade.API\ECE.Identidade.API.csproj", "{407BD0CF-4FC4-44FE-9028-483960A4D8FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECE.Core", "src\building blocks\ECE.Core\ECE.Core.csproj", "{670C3F11-1E06-4F2A-836D-5BBB2217CEEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECE.Core", "src\building blocks\ECE.Core\ECE.Core.csproj", "{670C3F11-1E06-4F2A-836D-5BBB2217CEEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{49363AB2-4E3E-47FE-A844-50A3E5400EC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECE.WebApp.MVC", "src\web\ECE.WebApp.MVC\ECE.WebApp.MVC.csproj", "{1C98F7A3-7B7F-48B0-B7C3-BA5232D0DDC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +29,10 @@ Global
 		{670C3F11-1E06-4F2A-836D-5BBB2217CEEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{670C3F11-1E06-4F2A-836D-5BBB2217CEEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{670C3F11-1E06-4F2A-836D-5BBB2217CEEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C98F7A3-7B7F-48B0-B7C3-BA5232D0DDC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C98F7A3-7B7F-48B0-B7C3-BA5232D0DDC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C98F7A3-7B7F-48B0-B7C3-BA5232D0DDC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C98F7A3-7B7F-48B0-B7C3-BA5232D0DDC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{407BD0CF-4FC4-44FE-9028-483960A4D8FA} = {3A5E1397-FEB1-4731-8FE9-20275E012F8F}
 		{670C3F11-1E06-4F2A-836D-5BBB2217CEEA} = {D1BD8B29-C568-4F53-A308-CA4A68E77018}
+		{1C98F7A3-7B7F-48B0-B7C3-BA5232D0DDC7} = {49363AB2-4E3E-47FE-A844-50A3E5400EC0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3795D441-80B4-4AD9-8C75-88A7E58CE007}
