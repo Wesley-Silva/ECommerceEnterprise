@@ -10,8 +10,9 @@ ECommerce completo desde a authenticação, carrinho de compra e meios de pagame
 - SQL Localdb
 
 ## Tela
-
-Em breve!
+- API Identidade
+  
+![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/master/src/services/ECE.Identidade.API/ImagensTela/Tela-Principal.jpg)
 
 ## Sobre
 
