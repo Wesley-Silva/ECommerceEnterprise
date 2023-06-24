@@ -10,7 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Identidade\" />
+    <Content Update="Views\Identidade\Login.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
