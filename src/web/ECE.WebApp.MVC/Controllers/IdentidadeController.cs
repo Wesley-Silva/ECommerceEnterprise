@@ -1,4 +1,5 @@
 ﻿using ECE.WebApp.MVC.Models;
+using ECE.WebApp.MVC.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -6,9 +7,10 @@ namespace ECE.WebApp.MVC.Controllers
 {
     public class IdentidadeController : Controller
     {
-        public IdentidadeController()
+        private readonly IAutenticationService _autenticationService;
+        public IdentidadeController(IAutenticationService autenticationService)
         {
-
+            _autenticationService = autenticationService;
         }
 
         [HttpGet]
@@ -26,6 +28,8 @@ namespace ECE.WebApp.MVC.Controllers
             {
                 return View(usuarioRegistro);
             }
+
+            var response = await _autenticationService.Registro(usuarioRegistro);
 
             if (false)
             {
@@ -50,6 +54,8 @@ namespace ECE.WebApp.MVC.Controllers
             {
                 return View(usuarioLogin);
             }
+
+            var resposta = await _autenticationService.Login(usuarioLogin);
 
             if (false)
             {
