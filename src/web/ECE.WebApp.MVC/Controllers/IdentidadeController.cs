@@ -1,6 +1,12 @@
 ﻿using ECE.WebApp.MVC.Models;
 using ECE.WebApp.MVC.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ECE.WebApp.MVC.Controllers
@@ -29,12 +35,15 @@ namespace ECE.WebApp.MVC.Controllers
                 return View(usuarioRegistro);
             }
 
-            var response = await _autenticationService.Registro(usuarioRegistro);
+            var resposta = await _autenticationService.Registro(usuarioRegistro);
 
-            if (false)
-            {
-                return View(usuarioRegistro);
-            }
+            //if (false)
+            //{
+            //    return View(usuarioRegistro);
+            //}
+
+            await RealizarLogin(resposta);
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -50,17 +59,16 @@ namespace ECE.WebApp.MVC.Controllers
         [Route("login")]
         public async Task<IActionResult> Login(UsuarioLogin usuarioLogin, string returnUrl = null)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(usuarioLogin);
-            }
+            if (!ModelState.IsValid) return View(usuarioLogin);
 
             var resposta = await _autenticationService.Login(usuarioLogin);
 
-            if (false)
-            {
-                return View(usuarioLogin);
-            }
+            //if (false)
+            //{
+            //    return View(usuarioLogin);
+            //}
+
+            await RealizarLogin(resposta);
 
             return RedirectToAction("Index", "Home");
         }
@@ -70,6 +78,32 @@ namespace ECE.WebApp.MVC.Controllers
         public async Task<IActionResult> Logout()
         {
             return RedirectToAction("Index", "Home");
+        }
+
+        private async Task RealizarLogin(UsuarioRespostaLogin resposta)
+        {
+            var token = ObterTokenFormatado(resposta.AccessToken);
+
+            var claims = new List<Claim>();
+            claims.Add(new Claim("JWT", resposta.AccessToken));
+            claims.AddRange(token.Claims);
+
+            //gerar as claim dentro do cookies
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var authProperties = new AuthenticationProperties
+            {
+                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(60),
+                IsPersistent = true,
+            };
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity), authProperties);
+        }
+
+        private static JwtSecurityToken ObterTokenFormatado(string jwtToken)
+        {
+            return new JwtSecurityTokenHandler().ReadJwtToken(jwtToken) as JwtSecurityToken;
         }
     }
 }
