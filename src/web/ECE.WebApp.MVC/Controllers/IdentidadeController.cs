@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ECE.WebApp.MVC.Controllers
 {
-    public class IdentidadeController : Controller
+    public class IdentidadeController : MainController
     {
         private readonly IAutenticationService _autenticationService;
         public IdentidadeController(IAutenticationService autenticationService)
@@ -37,11 +37,8 @@ namespace ECE.WebApp.MVC.Controllers
 
             var resposta = await _autenticationService.Registro(usuarioRegistro);
 
-            //if (false)
-            //{
-            //    return View(usuarioRegistro);
-            //}
-
+            if (ResponsePossuiErros(resposta.ResponseResult)) return View(usuarioRegistro);
+           
             await RealizarLogin(resposta);
 
             return RedirectToAction("Index", "Home");
@@ -63,10 +60,7 @@ namespace ECE.WebApp.MVC.Controllers
 
             var resposta = await _autenticationService.Login(usuarioLogin);
 
-            //if (false)
-            //{
-            //    return View(usuarioLogin);
-            //}
+            if (ResponsePossuiErros(resposta.ResponseResult)) return View(usuarioLogin);
 
             await RealizarLogin(resposta);
 

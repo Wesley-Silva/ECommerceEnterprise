@@ -37,6 +37,7 @@ namespace ECE.WebApp.MVC.Models
         public string AccessToken { get; set; }
         public double ExpiraEm { get; set; }
         public UsuarioToken UsuarioToken { get; set; }
+        public ResponseResult ResponseResult { get; set; }
     }
 
     public class UsuarioToken

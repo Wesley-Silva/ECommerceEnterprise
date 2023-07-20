@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECE.WebApp.MVC.Services
 {
-    public class AutenticationService : IAutenticationService
+    public class AutenticationService : Service, IAutenticationService
     {
         private readonly HttpClient _httpClient;
 
@@ -24,13 +24,21 @@ namespace ECE.WebApp.MVC.Services
 
             var response = await _httpClient.PostAsync("https://localhost:44312/api/identidade/autenticar", loginContent);
 
-            var teste = await response.Content.ReadAsStringAsync();
+            //var teste = await response.Content.ReadAsStringAsync();
 
             // Transformar propert minuscula em maiscula da biblioteca[System.Text.Json]
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
             };
+
+            if (!TratarErrosResponse(response))
+            {
+                return new UsuarioRespostaLogin
+                {
+                    ResponseResult = JsonSerializer.Deserialize<ResponseResult>(await response.Content.ReadAsStringAsync(), options)
+                };
+            }            
 
             return JsonSerializer.Deserialize<UsuarioRespostaLogin>(await response.Content.ReadAsStringAsync(), options);
         }
@@ -44,7 +52,21 @@ namespace ECE.WebApp.MVC.Services
 
             var response = await _httpClient.PostAsync("https://localhost:44312/api/identidade/nova-conta", registroContent);
 
-            return JsonSerializer.Deserialize<UsuarioRespostaLogin>(await response.Content.ReadAsStringAsync());
+            // Transformar propert minuscula em maiscula da biblioteca[System.Text.Json]
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+
+            if (!TratarErrosResponse(response))
+            {
+                return new UsuarioRespostaLogin
+                {
+                    ResponseResult = JsonSerializer.Deserialize<ResponseResult>(await response.Content.ReadAsStringAsync(), options)
+                };
+            }
+
+            return JsonSerializer.Deserialize<UsuarioRespostaLogin>(await response.Content.ReadAsStringAsync(), options);
         }
     }
 }
