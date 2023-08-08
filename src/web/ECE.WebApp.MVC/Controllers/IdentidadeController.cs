@@ -56,6 +56,7 @@ namespace ECE.WebApp.MVC.Controllers
         [Route("login")]
         public async Task<IActionResult> Login(UsuarioLogin usuarioLogin, string returnUrl = null)
         {
+            ViewData["returnUrl"] = returnUrl;
             if (!ModelState.IsValid) return View(usuarioLogin);
 
             var resposta = await _autenticationService.Login(usuarioLogin);
@@ -64,7 +65,12 @@ namespace ECE.WebApp.MVC.Controllers
 
             await RealizarLogin(resposta);
 
-            return RedirectToAction("Index", "Home");
+            if (string.IsNullOrEmpty(returnUrl))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return LocalRedirect(returnUrl);
         }
 
         [HttpGet]
