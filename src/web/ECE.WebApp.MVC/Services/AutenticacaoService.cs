@@ -1,4 +1,7 @@
-﻿using ECE.WebApp.MVC.Models;
+﻿using ECE.WebApp.MVC.Extensions;
+using ECE.WebApp.MVC.Models;
+using Microsoft.Extensions.Options;
+using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -9,8 +12,10 @@ namespace ECE.WebApp.MVC.Services
     {
         private readonly HttpClient _httpClient;
 
-        public AutenticationService(HttpClient httpClient)
+        public AutenticationService(HttpClient httpClient, 
+                                    IOptions<AppSettings> settings)
         {
+            httpClient.BaseAddress = new Uri(settings.Value.AutenticacaoUrl);
             _httpClient = httpClient;
         }
 
@@ -18,7 +23,7 @@ namespace ECE.WebApp.MVC.Services
         {
             var loginContent = ObterConteudo(usuarioLogin);
 
-            var response = await _httpClient.PostAsync("https://localhost:44312/api/identidade/autenticar", loginContent);
+            var response = await _httpClient.PostAsync("/api/identidade/autenticar", loginContent);
 
             //var teste = await response.Content.ReadAsStringAsync();                      
 
@@ -36,7 +41,7 @@ namespace ECE.WebApp.MVC.Services
         {
             var registroContent = ObterConteudo(usuarioRegistro);
 
-            var response = await _httpClient.PostAsync("https://localhost:44312/api/identidade/nova-conta", registroContent);
+            var response = await _httpClient.PostAsync("/api/identidade/nova-conta", registroContent);
              
             if (!TratarErrosResponse(response))
             {
