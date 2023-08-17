@@ -12,15 +12,11 @@ ECommerce completo desde a authenticação, carrinho de compra e meios de pagame
 ## Tela
 - API Identidade
 
-![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/master/src/services/ECE.Identidade.API/ImagensTela/Tela-Principal.jpg)
-
 ![Uploading Animation.gif…](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/master/src/web/ECE.WebApp.MVC/ImagensTela/Animation.gif)
 
-![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/master/src/web/ECE.WebApp.MVC/ImagensTela/tela-mvc.jpg)
-
-![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/master/src/web/ECE.WebApp.MVC/ImagensTela/tela-mvc-principal.jpg)
-
 ![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/master/src/web/ECE.WebApp.MVC/ImagensTela/tela-erros-servidor.jpg)
+
+![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/master/src/services/ECE.Identidade.API/ImagensTela/Tela-Principal.jpg)
 
 ## Sobre
 
