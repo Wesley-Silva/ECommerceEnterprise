@@ -2,6 +2,7 @@ using ACE.Catalogo.API.Configuration;
 using ACE.Catalogo.API.Data;
 using ACE.Catalogo.API.Data.Repository;
 using ACE.Catalogo.API.Models;
+using ACE.WebAPI.Core.Identidade;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -41,6 +42,8 @@ namespace ACE.Catalogo.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApiConfiguration(Configuration);
+
+            services.AddJwtConfiguration(Configuration);
 
             services.AddSwaggerConfiguration();
 

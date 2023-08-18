@@ -1,4 +1,5 @@
 ﻿using ACE.Catalogo.API.Data;
+using ACE.WebAPI.Core.Identidade;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,8 @@ namespace ACE.Catalogo.API.Configuration
             app.UseRouting();
 
             app.UseCors("Total");
+
+            app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>
             {

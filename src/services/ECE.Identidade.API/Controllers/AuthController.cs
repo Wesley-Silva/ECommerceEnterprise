@@ -1,4 +1,4 @@
-﻿using ECE.Identidade.API.Extensions;
+﻿using ACE.WebAPI.Core.Identidade;
 using ECE.Identidade.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

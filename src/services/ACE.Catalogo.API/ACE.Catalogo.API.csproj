@@ -2,13 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>90c51ab3-e504-4174-9ca1-de44847e763e</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\building blocks\ACE.WebAPI.Core\ACE.WebAPI.Core.csproj" />
     <ProjectReference Include="..\..\building blocks\ECE.Core\ECE.Core.csproj" />
 
 	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
