@@ -9,9 +9,9 @@ namespace ACE.Catalogo.API.Data.Repository
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        private readonly CatalogContext _context;
+        private readonly CatalogoContext _context;
 
-        public ProdutoRepository(CatalogContext context)
+        public ProdutoRepository(CatalogoContext context)
         {
             _context = context;
         }
