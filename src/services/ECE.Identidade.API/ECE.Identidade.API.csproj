@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ImagensTela\" />
+    <ProjectReference Include="..\..\building blocks\ACE.WebAPI.Core\ACE.WebAPI.Core.csproj" />
   </ItemGroup>
 
 
