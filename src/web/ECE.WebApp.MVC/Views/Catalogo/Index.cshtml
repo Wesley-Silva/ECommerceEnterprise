@@ -1,4 +1,4 @@
-﻿@*@using ECE.WebApp.MVC.Extensions*@
+﻿@using ECE.WebApp.MVC.Extensions
 @model IEnumerable<ECE.WebApp.MVC.Models.ProdutoViewModel>
 
 @{
@@ -9,7 +9,7 @@
     <div>
         <div style="background-image: url(images/banners/Template.jpg); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover">
             <div style="text-align: center;">
-                <img src="~/images/banners/nerdstore.png" />
+                <img src="~/images/banners/Template.jpg" />
             </div>
         </div>
         <div class="container" style=" padding-top: 20px">
@@ -28,12 +28,12 @@
                                     </a>
 
                                     <small class="card-text">
-                                        //this.MensagemEstoque(produto.QuantidadeEstoque)<br /><br />
+                                        @this.MensagemEstoque(produto.QuantidadeEstoque)<br /><br />
                                         @produto.Descricao
                                     </small>
                                 </figcaption>
                                 <div class="card-footer price mt-1">
-                                    //<h3>this.FormatoMoeda(produto.Valor)</h3>
+                                    <h3>@this.FormatoMoeda(produto.Valor)</h3>
                                 </div>
                             </div>
                         </div>
