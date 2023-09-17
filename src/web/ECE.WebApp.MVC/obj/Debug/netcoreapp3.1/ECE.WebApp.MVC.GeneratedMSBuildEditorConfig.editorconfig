@@ -1,0 +1,4 @@
+is_global = true
+build_property.RefitInternalNamespace = ECE.WebApp.MVC
+build_property.RootNamespace = ECE.WebApp.MVC
+build_property.ProjectDir = C:\dev\ECommerceEnterprise\src\web\ECE.WebApp.MVC\

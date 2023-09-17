@@ -79,3 +79,5 @@ C:\dev\ECommerceEnterprise\src\services\ECE.Identidade.API\bin\Debug\netcoreapp3
 C:\dev\ECommerceEnterprise\src\services\ECE.Identidade.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 C:\dev\ECommerceEnterprise\src\services\ECE.Identidade.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\dev\ECommerceEnterprise\src\services\ECE.Identidade.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\dev\ECommerceEnterprise\src\services\ECE.Identidade.API\bin\Debug\netcoreapp3.1\ACE.WebAPI.Core.dll
+C:\dev\ECommerceEnterprise\src\services\ECE.Identidade.API\bin\Debug\netcoreapp3.1\ACE.WebAPI.Core.pdb

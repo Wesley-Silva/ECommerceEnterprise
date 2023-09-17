@@ -1,0 +1,10 @@
+C:\dev\ECommerceEnterprise\src\building blocks\ACE.WebAPI.Core\bin\Debug\netcoreapp3.1\ACE.WebAPI.Core.deps.json
+C:\dev\ECommerceEnterprise\src\building blocks\ACE.WebAPI.Core\bin\Debug\netcoreapp3.1\ACE.WebAPI.Core.dll
+C:\dev\ECommerceEnterprise\src\building blocks\ACE.WebAPI.Core\bin\Debug\netcoreapp3.1\ACE.WebAPI.Core.pdb
+C:\dev\ECommerceEnterprise\src\building blocks\ACE.WebAPI.Core\obj\Debug\netcoreapp3.1\ACE.WebAPI.Core.csproj.AssemblyReference.cache
+C:\dev\ECommerceEnterprise\src\building blocks\ACE.WebAPI.Core\obj\Debug\netcoreapp3.1\ACE.WebAPI.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\dev\ECommerceEnterprise\src\building blocks\ACE.WebAPI.Core\obj\Debug\netcoreapp3.1\ACE.WebAPI.Core.AssemblyInfoInputs.cache
+C:\dev\ECommerceEnterprise\src\building blocks\ACE.WebAPI.Core\obj\Debug\netcoreapp3.1\ACE.WebAPI.Core.AssemblyInfo.cs
+C:\dev\ECommerceEnterprise\src\building blocks\ACE.WebAPI.Core\obj\Debug\netcoreapp3.1\ACE.WebAPI.Core.csproj.CoreCompileInputs.cache
+C:\dev\ECommerceEnterprise\src\building blocks\ACE.WebAPI.Core\obj\Debug\netcoreapp3.1\ACE.WebAPI.Core.dll
+C:\dev\ECommerceEnterprise\src\building blocks\ACE.WebAPI.Core\obj\Debug\netcoreapp3.1\ACE.WebAPI.Core.pdb
