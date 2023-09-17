@@ -10,9 +10,10 @@ ECommerce completo desde a authenticação, carrinho de compra e meios de pagame
 - SQL Localdb
 
 ## Tela
-- API Identidade
 
 ![Uploading Animation.gif…](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/master/src/web/ECE.WebApp.MVC/ImagensTela/Animation.gif)
+
+![Uploading Animation.gif…](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/master/src/web/ECE.WebApp.MVC/ImagensTela/Produto.gif)
 
 ![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/master/src/web/ECE.WebApp.MVC/ImagensTela/tela-erros-servidor.jpg)
 
