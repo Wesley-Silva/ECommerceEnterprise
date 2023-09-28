@@ -2,10 +2,10 @@
 
 ECommerce completo desde a authenticação, carrinho de compra e meios de pagamento. 
 
-### Linguagem
+## Linguagem
 - C#
 
-### Tecnologias
+## Tecnologias
 - .Net Core 3.1.3
 - SQL Localdb
 
