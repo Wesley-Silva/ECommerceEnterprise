@@ -21,5 +21,5 @@ ECommerce completo desde a authenticação, carrinho de compra e meios de pagame
 
 ## Sobre
 
-Formado em Sistema de Informação e apaixonado por tecnologia e pai do Arthur
+Desenvolvedor back-end altamente motivado, apaixonado por tecnologia e pai do Arthur
 **[Currículo-Online](https://wesleysilva.netlify.app/?target=_blank)**
