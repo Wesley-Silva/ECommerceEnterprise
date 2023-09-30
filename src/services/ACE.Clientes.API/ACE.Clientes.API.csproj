@@ -2,14 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>3c71a38e-2663-411e-91f0-a956117e9445</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\building blocks\ACE.WebAPI.Core\ACE.WebAPI.Core.csproj" />
     <ProjectReference Include="..\..\building blocks\ECE.Core\ECE.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="3.1.3" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.3" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3" />	
+	<PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.3" />
   </ItemGroup>
 
 

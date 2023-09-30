@@ -1,3 +1,5 @@
+using ACE.Clientes.API.Configuration;
+using ACE.WebAPI.Core.Identidade;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,37 +17,40 @@ namespace ACE.Clientes.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public Startup(IHostEnvironment hostEnvironment)
         {
-            services.AddControllers();
-        }
+            // add suporte aos appsettings conforme ambiente
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(hostEnvironment.ContentRootPath)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
+                .AddEnvironmentVariables();
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
+            if (hostEnvironment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                builder.AddUserSecrets<Startup>();
             }
 
-            app.UseHttpsRedirection();
+            Configuration = builder.Build();
+        }
 
-            app.UseRouting();
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddApiConfiguration(Configuration);
 
-            app.UseAuthorization();
+            //services.AddJwtConfiguration(Configuration);
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            services.AddSwaggerConfiguration();
+
+            services.RegisterServices();
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseSwaggerConfiguration();
+
+            app.UseApiConfiguration(env);
         }
     }
 }
