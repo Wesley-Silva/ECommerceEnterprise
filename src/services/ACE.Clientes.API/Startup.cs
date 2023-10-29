@@ -1,5 +1,6 @@
 using ACE.Clientes.API.Configuration;
 using ACE.WebAPI.Core.Identidade;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,9 +40,11 @@ namespace ACE.Clientes.API
         {
             services.AddApiConfiguration(Configuration);
 
-            //services.AddJwtConfiguration(Configuration);
+            services.AddJwtConfiguration(Configuration);
 
             services.AddSwaggerConfiguration();
+
+            services.AddMediatR(typeof(Startup));
 
             services.RegisterServices();
         }
