@@ -38,7 +38,8 @@ namespace ACE.Clientes.API.Data
 
         public async Task<bool> Commit()
         {
-            return await base.SaveChangesAsync() > 0;
+            var sucesso = await base.SaveChangesAsync() > 0;
+            return sucesso;
         }
     }
 }

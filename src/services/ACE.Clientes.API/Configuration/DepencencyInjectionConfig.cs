@@ -1,5 +1,7 @@
 ﻿using ACE.Clientes.API.Application.Commands;
 using ACE.Clientes.API.Data;
+using ACE.Clientes.API.Data.Repository;
+using ACE.Clientes.API.Models;
 using ECE.Core.Mediator;
 using FluentValidation.Results;
 using MediatR;
@@ -14,6 +16,7 @@ namespace ACE.Clientes.API.Configuration
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IRequestHandler<RegistrarClienteCommand, ValidationResult>, ClienteCommandHandler>();
 
+            services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<ClientesContext>();
         }
     }
