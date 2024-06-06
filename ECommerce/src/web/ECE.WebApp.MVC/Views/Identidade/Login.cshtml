@@ -4,36 +4,44 @@
     ViewData["Title"] = "Login de usuário";
 }
 
-
-<section class="section-conten padding-y container" style="min-height:35vh">
-    <div class="card mx-auto" style="max-width: 380px; margin-top: 100px;">
-
+<div class="col-md-6">
+    <div class="card border-0 box-shadow">
         <div class="card-body">
-            <h4 class="card-title mb-4">Seja bem vindo!</h4>            
-            <form method="post">
-                <div class="form-group">
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+            <h2 class="h4 mb-1">Já sou cliente</h2>
+            <div class="py-3">
+        <h3 class="d-inline-block align-middle font-size-base font-weight-semibold mb-2 mr-2">Use sua rede social para se conectar:</h3>
+                <div class="d-inline-block align-middle"><a class="social-btn sb-google mr-2 mb-2" href="#" data-toggle="tooltip" title="Sign in with Google"><i class="czi-google"></i></a><a class="social-btn sb-facebook mr-2 mb-2" href="#" data-toggle="tooltip" title="Sign in with Facebook"><i class="czi-facebook"></i></a></div>
+            </div>
+            <hr>
+            <h3 class="font-size-base pt-4 pb-2">Ou preencha o formulário abaixo:</h3>
+            <form method="post" class="needs-validation" novalidate>
+                <div class="input-group-overlay form-group">
+                    <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-mail"></i></span></div>
+                    <input asp-for="Email" class="form-control prepended-form-control" type="email" placeholder="Email" required>
                 </div>
-
-                <div class="form-group">
-                    <label asp-for="Senha"></label>
-                    <input type="password" asp-for="Senha" class="form-control" />
-                    <span asp-validation-for="Senha" class="text-danger"></span>
+                <div class="input-group-overlay form-group">
+                    <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-locked"></i></span></div>
+                    <div class="password-toggle">
+                        <input asp-for="Senha" class="form-control prepended-form-control" type="password" placeholder="Senha" required>
+                        <label class="password-toggle-btn">
+                            <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Show password</span>
+                        </label>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                <div class="d-flex flex-wrap justify-content-between">
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" checked id="remember_me">
+                        <label class="custom-control-label" for="remember_me">Lembrar me</label>
+                    </div><a class="nav-link-inline font-size-sm" href="account-password-recovery.html">Esqueci minha senha?</a>
+                </div>
+                <hr class="mt-4">
+                <div class="text-right pt-4">
+                    <button class="btn btn-primary" type="submit"><i class="czi-sign-in mr-2 ml-n21"></i>Entrar</button>
                 </div>
             </form>
         </div>
-        <div class="card-footer text-center">Ainda não tem uma conta?<a asp-controller="Identidade" asp-action="Registro"> Criar uma conta</a></div>
     </div>
-
-</section>
-
-
-@section Scripts {
+</div>
+@section Scripts {    
     <partial name="_ValidationScriptsPartial" />
 }
