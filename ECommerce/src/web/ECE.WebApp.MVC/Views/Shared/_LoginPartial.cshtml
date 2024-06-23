@@ -5,18 +5,37 @@
 
 @if (AppUser.EstaAutenticado())
 {
-    <div>
-        <div class="dropdown d-inline-block">
-            <a href="#" class="icontext dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                @*<img class="icon icon-sm rounded-circle" src="https://s.gravatar.com/avatar/@this.HashEmailForGravatar(AppUser.ObterUserEmail())?d=mm&s=45">*@
-                @*<img class="icon icon-sm rounded-circle" src="~/images/avatars/avatar1.jpg">*@
-                <a class="nav-link text-dark" title="Manage">Olá @AppUser.ObterUserEmail()</a>
-            </a> <!-- iconbox // -->
-            <div class="dropdown-menu dropdown-menu-left" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 12px; left: 91px; transform: translate3d(150px, 32px, 0px);">
-                <a class="dropdown-item" href="#">Meu Perfil</a>
-                <a class="dropdown-item" href="#">Meus Pedidos</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" asp-controller="Identidade" asp-action="Logout">Sair</a>
+    <div class="navbar-tool dropdown ml-3">
+        <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="shop-cart.html">  
+            <a class="navbar-tool-text" href="shop-cart.html">
+                Olá @AppUser.ObterUserEmail()
+            </a>
+        </a>
+        <!-- Cart dropdown-->
+        <div class="dropdown-menu dropdown-menu-right" style="width: 10rem;">
+            <div class="widget widget-cart px-3 pt-2 pb-3">
+                <div style="height: 10rem;" data-simplebar data-simplebar-auto-hide="false">
+                                       
+                    <div class="widget-cart-item py-2 border-bottom">
+                        <button class="close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
+                        <div class="media align-items-center">
+                            <a class="dropdown-item" href="#">Meu Perfil</a>
+                        </div>
+                    </div>
+                    <div class="widget-cart-item py-2 border-bottom">
+                        <button class="close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
+                        <div class="media align-items-center">
+                            <a class="dropdown-item" href="#">Meus Pedidos</a>
+                        </div>
+                    </div>
+                    <div class="widget-cart-item py-2 border-bottom">
+                        <button class="close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
+                        <div class="media align-items-center">
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" asp-controller="Identidade" asp-action="Logout">Sair</a>
+                        </div>
+                    </div>
+                </div>                
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ECE.WebApp.MVC.Controllers
 {
-    public class IdentidadeController : Controller
+    public class IdentidadeController : MainController
     {
         private readonly IAutenticacaoService _autenticacaoService;
 
@@ -38,10 +38,11 @@ namespace ECE.WebApp.MVC.Controllers
 
             var resposta = await _autenticacaoService.Registro(usuarioRegistro);
 
-            //if (false)
-            //{
-            //    return View(usuarioRegistro);
-            //}
+            if (ResponsePossuiErros(resposta.ResponseResult))
+            {
+                return View(usuarioRegistro);
+            }
+
             await RealizarLogin(resposta);
 
             return RedirectToAction("Index", "Home");
@@ -65,10 +66,10 @@ namespace ECE.WebApp.MVC.Controllers
 
             var resposta = await _autenticacaoService.Login(usuarioLogin);
 
-            //if (false)
-            //{
-            //    return View(usuarioLogin);
-            //}
+            if (ResponsePossuiErros(resposta.ResponseResult))
+            {
+                return View(usuarioLogin);
+            }
 
             await RealizarLogin(resposta);
 
@@ -79,6 +80,7 @@ namespace ECE.WebApp.MVC.Controllers
         [Route("sair")]
         public async Task<IActionResult> Logout()
         {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
 
