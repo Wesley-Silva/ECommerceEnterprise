@@ -17,7 +17,7 @@
             
             <vc:summary></vc:summary>
             
-            <form method="post" class="needs-validation" novalidate>
+            <form asp-route-returnurl="@ViewData["returnUrl"]" method="post" class="needs-validation" novalidate>
                 <div class="input-group-overlay form-group">
                     <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-mail"></i></span></div>
                     <input asp-for="Email" class="form-control prepended-form-control" type="email" placeholder="Email" required>
