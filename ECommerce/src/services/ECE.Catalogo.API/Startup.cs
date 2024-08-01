@@ -1,7 +1,11 @@
+using ECE.Catalogo.API.Data;
+using ECE.Catalogo.API.Data.Repository;
+using ECE.Catalogo.API.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +29,15 @@ namespace ECE.Catalogo.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CatalogoContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
             services.AddControllers();
+
+            services.AddScoped<IPordutoRepository, PordutoRepository>();
+            services.AddScoped<CatalogoContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
