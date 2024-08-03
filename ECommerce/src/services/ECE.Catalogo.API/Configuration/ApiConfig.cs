@@ -1,37 +1,57 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using ECE.Catalogo.API.Data;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace ECE.Catalogo.API.Configuration
 {
     public static class ApiConfig
     {
-        //public static IServiceCollection AddApiConfiguration(this IServiceCollection services)
-        //{
-        //    services.AddControllers();
+        public static IServiceCollection AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<CatalogoContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            });
 
-        //    return services;
-        //}
+            services.AddControllers();
 
-        //public static IApplicationBuilder UseApiConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
-        //{
-        //    if (env.IsDevelopment())
-        //    {
-        //        app.UseDeveloperExceptionPage();
-        //    }
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Total",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
 
-        //    app.UseHttpsRedirection();
+            return services;
+        }
 
-        //    app.UseRouting();
+        public static IApplicationBuilder UseApiConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            
+            app.UseHttpsRedirection();
 
-        //    //app.UseIdentityConfiguration();
+            app.UseRouting();
 
-        //    app.UseEndpoints(endpoints =>
-        //    {
-        //        endpoints.MapControllers();
-        //    });
+            app.UseCors("Total");
 
-        //    return app;
-        //}
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+            return app;
+        }
     }
 }

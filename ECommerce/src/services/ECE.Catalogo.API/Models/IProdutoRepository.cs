@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECE.Catalogo.API.Models
 {
-    public interface IPordutoRepository : IRepository<Produto>
+    public interface IProdutoRepository : IRepository<Produto>
     {
         Task<IEnumerable<Produto>> ObterTodos();
         Task<Produto> ObterPorId(Guid id);

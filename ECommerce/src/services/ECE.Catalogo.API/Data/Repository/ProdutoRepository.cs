@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ECE.Catalogo.API.Data.Repository
 {
-    public class PordutoRepository : IPordutoRepository
+    public class ProdutoRepository : IProdutoRepository
     {
         private readonly CatalogoContext _context;
 
-        public PordutoRepository(CatalogoContext context)
+        public ProdutoRepository(CatalogoContext context)
         {
             _context = context;
         }
