@@ -1,4 +1,5 @@
 using ECE.Catalogo.API.Configuration;
+using ECE.WebAPI.Core.Identidade;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,8 @@ namespace ECE.Catalogo.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApiConfiguration(Configuration);
+
+            services.AddJwtConfiguration(Configuration);
 
             services.AddSwaggerConfiguration();
 

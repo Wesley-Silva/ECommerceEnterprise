@@ -1,5 +1,5 @@
-﻿using ECE.Identidade.API.Extensions;
-using ECE.Identidade.API.Models;
+﻿using ECE.Identidade.API.Models;
+using ECE.WebAPI.Core.Identidade;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -22,7 +22,7 @@ namespace ECE.Identidade.API.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
 
-        public AuthController(SignInManager<IdentityUser> signInManager, 
+        public AuthController(SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
                               IOptions<AppSettings> appSettings)
         {
@@ -70,12 +70,12 @@ namespace ECE.Identidade.API.Controllers
             if (!ModelState.IsValid)
             {
                 return CustomResponse(ModelState);
-            }            
+            }
 
             var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
 
             if (result.Succeeded)
-            {                
+            {
                 return CustomResponse(await GerarJwt(usuarioLogin.Email));
             }
 
