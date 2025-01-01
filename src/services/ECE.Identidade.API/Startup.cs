@@ -41,6 +41,7 @@ namespace ECE.Identidade.API
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddErrorDescriber<IdentityMensagensPortugues>()
                 .AddDefaultTokenProviders();
 
             // JWT 
