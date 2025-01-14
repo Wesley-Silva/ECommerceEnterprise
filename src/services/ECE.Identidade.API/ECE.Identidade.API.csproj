@@ -2,11 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>392eac3b-3554-42fc-99b6-c8dfcac7ba63</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.30" />
