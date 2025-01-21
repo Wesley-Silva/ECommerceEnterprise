@@ -21,6 +21,7 @@ O E-commerce Enterprise oferece aos usuários a opção de login ou registro usa
 - ``SQL Localdb``
 - ``CQRS``
 - ``Json Web Token``
+- ``Identity``
 
 <div id='decissoes'/> 
   
@@ -31,7 +32,7 @@ O E-commerce Enterprise oferece aos usuários a opção de login ou registro usa
 <div id='telas'/> 
   
 # Telas
-Em breve...
+![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/api-identidade.jpg)
 
 <div id='sobre'/>  
   
