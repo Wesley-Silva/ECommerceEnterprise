@@ -34,6 +34,8 @@ namespace ECE.Identidade.API.Controllers
         [HttpPost("nova-conta")]
         public async Task<ActionResult> Registrar(UsuarioRegistro usuarioRegistro)
         {
+            //return new StatusCodeResult(500);
+
             if (!ModelState.IsValid)
             {
                 return CustomResponse(ModelState);
@@ -64,6 +66,8 @@ namespace ECE.Identidade.API.Controllers
         [HttpPost("autenticar")]
         public async Task<ActionResult> Login(UsuarioLogin usuarioLogin)
         {
+            //return new StatusCodeResult(401);
+
             if (!ModelState.IsValid)
             {
                 return CustomResponse(ModelState);

@@ -10,7 +10,9 @@
 
         <div class="card-body">
             <h4 class="card-title mb-4">Seja bem vindo!</h4>
-            <form method="post">
+            <hr />
+            <vc:Summary ></vc:Summary>
+            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                 <div class="form-group">
                     <label asp-for="Email"></label>
                     <input asp-for="Email" class="form-control" />

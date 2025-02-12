@@ -1,13 +1,10 @@
 ﻿using ECE.WebApp.MVC.Models;
-using Microsoft.Extensions.Options;
 using System.Net.Http;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ECE.WebApp.MVC.Services
 {
-    public class AutenticacaoService : IAutenticacaoService
+    public class AutenticacaoService : Service, IAutenticacaoService
     {
         private readonly HttpClient _httpClient;
 
@@ -17,39 +14,39 @@ namespace ECE.WebApp.MVC.Services
         }
 
         public async Task<UsuarioRespostaLogin> Login(UsuarioLogin usuarioLogin)
-        {            
-            var loginContent = new StringContent(
-                JsonSerializer.Serialize(usuarioLogin),
-                Encoding.UTF8, 
-                "application/json");
+        {
+            var loginContent = ObterConteudo(usuarioLogin);
 
             var response = await _httpClient.PostAsync("https://localhost:44329/api/identidade/autenticar", loginContent);
 
-            var options = new JsonSerializerOptions
-            { 
-                PropertyNameCaseInsensitive = true
-            };
+            if (!TratarErrosResponse(response))
+            {
+                return new UsuarioRespostaLogin
+                {
+                    ResponseResult = await DeserializarObjetoResponse<ResponseResult>(response)
+                };
+            }
 
-            var teste = await response.Content.ReadAsStringAsync();
+            //var teste = await response.Content.ReadAsStringAsync();
 
-            return JsonSerializer.Deserialize<UsuarioRespostaLogin>(await response.Content.ReadAsStringAsync(), options);
+            return await DeserializarObjetoResponse<UsuarioRespostaLogin>(response);
         }
 
         public async Task<UsuarioRespostaLogin> Registro(UsuarioRegistro usuarioRegistro)
         {
-            var registroContent = new StringContent(
-                JsonSerializer.Serialize(usuarioRegistro),
-                Encoding.UTF8,
-                "application/json");
+            var registroContent = ObterConteudo(usuarioRegistro);
 
             var response = await _httpClient.PostAsync("https://localhost:44329/api/identidade/nova-conta", registroContent);
 
-            var options = new JsonSerializerOptions
+            if (!TratarErrosResponse(response))
             {
-                PropertyNameCaseInsensitive = true
-            };
+                return new UsuarioRespostaLogin
+                {
+                    ResponseResult = await DeserializarObjetoResponse<ResponseResult>(response)
+                };
+            }
 
-            return JsonSerializer.Deserialize<UsuarioRespostaLogin>(await response.Content.ReadAsStringAsync(), options);
+            return await DeserializarObjetoResponse<UsuarioRespostaLogin>(response);
         }
     }
 }
