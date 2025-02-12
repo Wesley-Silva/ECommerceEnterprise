@@ -42,4 +42,4 @@ O E-commerce Enterprise oferece aos usuários a opção de login ou registro usa
   
 ## Sobre
 
-Desenvolvedor com +2 anos de experiência em desenvolvimento e manutenção de sistemas focado em tecnologias Microsoft. Experiência em Entity Framework Core, C#, ASP.NET MVC, APIs RESTful, SQL Server, Entity Framework e GIT. Habilidade em desenvolvimento full stack, manutenção de aplicações legadas e boas práticas como SOLID e Clean Code. **[Histórico](https://wesleysilva.netlify.app/?target=_blank)**
+O Ecommerce Enterprise é desenvolvido por Wesley Silva. **[Sobre](https://wesleysilva.netlify.app/?target=_blank)**
