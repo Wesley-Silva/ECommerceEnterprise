@@ -32,7 +32,10 @@ O E-commerce Enterprise oferece aos usuários a opção de login ou registro usa
 <div id='telas'/> 
   
 # Telas
+![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/login-registro.jpg)
 ![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/api-identidade.jpg)
+![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/diagrama-bd.jpg)
+
 
 <div id='sobre'/>  
   
