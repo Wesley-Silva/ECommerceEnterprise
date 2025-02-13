@@ -33,6 +33,7 @@ O E-commerce Enterprise oferece aos usuários a opção de login ou registro usa
   
 # Telas
 ![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/login-registro.jpg)
+![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/login-messagem.jpg)
 ![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/api-identidade.jpg)
 ![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/diagrama-bd.jpg)
 
@@ -41,5 +42,4 @@ O E-commerce Enterprise oferece aos usuários a opção de login ou registro usa
   
 ## Sobre
 
-Desenvolvedor com +2 anos de expêriencia, apaixonado por tecnologia pai do Arthur e Heitor - 
-**[Histórico](https://wesleysilva.netlify.app/?target=_blank)**
+O Ecommerce Enterprise é desenvolvido por Wesley Silva. **[Sobre](https://wesleysilva.netlify.app/?target=_blank)**
