@@ -20,5 +20,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\building blocks\ECE.WebAPI.Core\ECE.WebAPI.Core.csproj" />
+  </ItemGroup>
+
 
 </Project>

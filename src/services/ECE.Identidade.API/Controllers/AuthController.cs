@@ -1,11 +1,10 @@
-﻿using ECE.Identidade.API.Extensions;
-using ECE.Identidade.API.Models;
+﻿using ECE.Identidade.API.Models;
+using ECE.WebAPI.Core.Identidade;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -14,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ECE.Identidade.API.Controllers
-{    
+{
     [Route("api/identidade")]
     public class AuthController : MainController
     {
@@ -22,7 +21,7 @@ namespace ECE.Identidade.API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly AppSettings _appSettings;
 
-        public AuthController(UserManager<IdentityUser> userManager, 
+        public AuthController(UserManager<IdentityUser> userManager,
                               SignInManager<IdentityUser> signInManager,
                               IOptions<AppSettings> appSettings)
         {
@@ -51,7 +50,7 @@ namespace ECE.Identidade.API.Controllers
             var result = await _userManager.CreateAsync(user, usuarioRegistro.Senha);
 
             if (result.Succeeded)
-            {                
+            {
                 return CustomResponse(await GerarJwt(usuarioRegistro.Email));
             }
 
@@ -77,7 +76,7 @@ namespace ECE.Identidade.API.Controllers
                                 usuarioLogin.Senha, false, true);
 
             if (result.Succeeded)
-            {                
+            {
                 return CustomResponse(await GerarJwt(usuarioLogin.Email));
             }
 
@@ -168,7 +167,7 @@ namespace ECE.Identidade.API.Controllers
             claims.Add(new Claim(JwtRegisteredClaimNames.Nbf, ToUnixEpochDate(DateTime.UtcNow).ToString()));
             claims.Add(new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(DateTime.UtcNow).ToString(), ClaimValueTypes.Integer64));
 
-            foreach (var userRole in userRoles) 
+            foreach (var userRole in userRoles)
             {
                 claims.Add(new Claim("role", userRole));
             }
@@ -199,7 +198,7 @@ namespace ECE.Identidade.API.Controllers
                 {
                     Id = user.Id,
                     Email = user.Email,
-                    Claims = claims.Select(c => new UsuarioClaim { Type = c.Type, Value = c.Value})
+                    Claims = claims.Select(c => new UsuarioClaim { Type = c.Type, Value = c.Value })
                 }
             };
 
@@ -209,6 +208,6 @@ namespace ECE.Identidade.API.Controllers
 
 
         private static long ToUnixEpochDate(DateTime date)
-            => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970,1,1,0,0,0,TimeSpan.Zero)).TotalSeconds);
+            => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
     }
 }
