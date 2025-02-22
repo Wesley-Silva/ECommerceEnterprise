@@ -79,7 +79,7 @@ namespace ECE.WebApp.MVC.Controllers
 
             if (string.IsNullOrEmpty(returnUrl))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Catalogo");
             }
 
             return LocalRedirect(returnUrl);
@@ -90,7 +90,7 @@ namespace ECE.WebApp.MVC.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Catalogo");
         }
 
         private async Task RealizarLogin(UsuarioRespostaLogin resposta)
