@@ -29,7 +29,7 @@ namespace ECE.WebApp.MVC.Services
             return await DeserializarObjetoResponse<ProdutoViewModel>(response);
         }
 
-        public async Task<IEnumerable> ObterTodos()
+        public async Task<IEnumerable<ProdutoViewModel>> ObterTodos()
         {
             var response = await _httpClient.GetAsync($"{_settings.CatalogoUrl}/catalogo/produtos/");
 

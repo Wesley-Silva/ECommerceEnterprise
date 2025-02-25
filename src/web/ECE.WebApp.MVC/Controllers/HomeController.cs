@@ -10,7 +10,19 @@ using System.Threading.Tasks;
 namespace ECE.WebApp.MVC.Controllers
 {
     public class HomeController : Controller
-    {
+    {        
+        [Route("sistema-indisponivel")]
+        public IActionResult SistemaIndisponivel()
+        {
+            var modelErro = new ErrorViewModel
+            {
+                Mensagem = "O sistema está temporariamente indisponível, isto pode ocorrer em momentos de sobrecarga.",
+                Titulo = "Sistema Indisponível",
+                ErroCode = 500
+            };
+            return View("Error", modelErro);
+        }
+
         public IActionResult Index()
         {
             return View();
