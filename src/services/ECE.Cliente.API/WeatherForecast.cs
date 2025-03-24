@@ -1,6 +1,6 @@
 using System;
 
-namespace ECE.Catalogo.Cliente
+namespace ECE.Cliente.API
 {
     public class WeatherForecast
     {

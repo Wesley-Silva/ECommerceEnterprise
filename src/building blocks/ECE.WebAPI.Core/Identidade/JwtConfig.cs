@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -12,7 +11,7 @@ namespace ECE.WebAPI.Core.Identidade
     {
         public static IServiceCollection AddJwtConfiguration(this IServiceCollection services,
             IConfiguration configuration)
-        { 
+        {
             // JWT 
             var appSettingsSection = configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
