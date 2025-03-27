@@ -4,9 +4,9 @@ using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using ACE.Clientes.API.Models;
+using ECE.Cliente.API.Models;
 
-namespace ACE.Clientes.API.Data
+namespace ECE.Cliente.API.Data
 {
     public sealed class ClientesContext : DbContext, IUnitOfWork
     {
@@ -17,7 +17,7 @@ namespace ACE.Clientes.API.Data
             ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
-        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Models.Cliente> Clientes { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

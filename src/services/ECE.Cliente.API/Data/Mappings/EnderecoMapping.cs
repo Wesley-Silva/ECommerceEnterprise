@@ -1,4 +1,4 @@
-﻿using ACE.Clientes.API.Models;
+﻿using ECE.Cliente.API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

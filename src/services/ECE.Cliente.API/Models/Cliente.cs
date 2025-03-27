@@ -1,7 +1,7 @@
 ﻿using ECE.Core.DomainObjets;
 using System;
 
-namespace ACE.Clientes.API.Models
+namespace ECE.Cliente.API.Models
 {
     public class Cliente : Entity, IAggregateRoot
     {

@@ -1,13 +1,13 @@
-﻿using ACE.Clientes.API.Models;
+﻿using ECE.Cliente.API.Models;
 using ECE.Core.DomainObjets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ACE.Clientes.API.Data.Mappings
+namespace ECE.Cliente.API.Data.Mappings
 {
-    public class ClienteMapping : IEntityTypeConfiguration<Cliente>
+    public class ClienteMapping : IEntityTypeConfiguration<Models.Cliente>
     {
-        public void Configure(EntityTypeBuilder<Cliente> builder)
+        public void Configure(EntityTypeBuilder<Models.Cliente> builder)
         {
             builder.HasKey(c => c.Id);
 

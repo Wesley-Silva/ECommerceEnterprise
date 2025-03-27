@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ECE.WebAPI.Core.Identidade;
+using MediatR;
 
 namespace ECE.Cliente.API
 {
@@ -35,6 +36,8 @@ namespace ECE.Cliente.API
             services.AddJwtConfiguration(Configuration);
 
             services.AddSwaggerConfiguration();
+
+            services.AddMediatR(typeof(Startup));
 
             services.RegisterServices();
         }

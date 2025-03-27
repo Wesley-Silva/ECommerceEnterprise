@@ -1,4 +1,4 @@
-﻿using ACE.Clientes.API.Data;
+﻿using ECE.Cliente.API.Data;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ECE.Cliente.API.Configuration

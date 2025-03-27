@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ECE.WebAPI.Core.Identidade;
-using ACE.Clientes.API.Data;
+using ECE.Cliente.API.Data;
 
 namespace ECE.Cliente.API.Configuration
 {
