@@ -15,8 +15,8 @@ namespace ECE.Catalogo.API.Data.Repository
         {
             _context = context;
         }
-
-        public IUnitOfWork UnitOfWork => _context;
+        
+        public IUnitOfWork unitOfWork => _context;
 
         public async Task<IEnumerable<Produto>> ObterTodos()
         {
