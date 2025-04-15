@@ -1,5 +1,7 @@
 ﻿using ECE.Catalogo.API.Models;
 using ECE.Core.Data;
+using ECE.Core.Messages;
+using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +17,9 @@ namespace ECE.Catalogo.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Ignore<ValidationResult>();
+            modelBuilder.Ignore<Event>();
+
             foreach (var property in modelBuilder.Model.GetEntityTypes().SelectMany(
                 x => x.GetProperties().Where(c => c.ClrType == typeof(string))))
             {

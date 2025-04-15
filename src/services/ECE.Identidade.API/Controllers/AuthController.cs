@@ -1,4 +1,5 @@
 ﻿using ECE.Identidade.API.Models;
+using ECE.WebAPI.Core.Controller;
 using ECE.WebAPI.Core.Identidade;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

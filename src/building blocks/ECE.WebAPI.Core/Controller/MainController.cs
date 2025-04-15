@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ECE.Identidade.API.Controllers
+namespace ECE.WebAPI.Core.Controller
 {
     [ApiController]
-    public abstract class MainController : Controller
+    public abstract class MainController : Microsoft.AspNetCore.Mvc.Controller
     {
         protected ICollection<string> Erros = new List<string>();
 
@@ -35,8 +35,18 @@ namespace ECE.Identidade.API.Controllers
             return CustomResponse();
         }
 
+        protected ActionResult CustomResponse(ValidationResult validationResult)
+        {            
+            foreach (var erro in validationResult.Errors)
+            {
+                AdicionarErroProcessamento(erro.ErrorMessage);
+            }
+
+            return CustomResponse();
+        }
+
         protected bool OperacaoValida()
-        { 
+        {
             return !Erros.Any();
         }
 

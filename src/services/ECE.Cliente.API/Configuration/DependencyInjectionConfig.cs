@@ -1,4 +1,5 @@
 ﻿using ECE.Cliente.API.Application.Commands;
+using ECE.Cliente.API.Application.Events;
 using ECE.Cliente.API.Data;
 using ECE.Cliente.API.Data.Repository;
 using ECE.Cliente.API.Models;
@@ -15,6 +16,8 @@ namespace ECE.Cliente.API.Configuration
         {
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IRequestHandler<RegistrarClienteCommand, ValidationResult>, ClienteCommandHandler>();
+
+            services.AddScoped<INotificationHandler<ClienteRegistradoEvent>, ClienteEventHandler>();
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<ClientesContext>();
