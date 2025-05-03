@@ -22,6 +22,7 @@ O E-commerce Enterprise oferece aos usuários a opção de login ou registro usa
 - ``CQRS``
 - ``Json Web Token``
 - ``Identity``
+- ``MediatR``
 
 <div id='decissoes'/> 
   
