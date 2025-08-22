@@ -1,4 +1,6 @@
-﻿using ECE.Identidade.API.Models;
+﻿using EasyNetQ;
+using ECE.Core.Messages.Integration;
+using ECE.Identidade.API.Models;
 using ECE.WebAPI.Core.Controller;
 using ECE.WebAPI.Core.Identidade;
 using Microsoft.AspNetCore.Identity;
@@ -22,13 +24,17 @@ namespace ECE.Identidade.API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly AppSettings _appSettings;
 
+        private IBus _bus;
+
         public AuthController(UserManager<IdentityUser> userManager,
                               SignInManager<IdentityUser> signInManager,
-                              IOptions<AppSettings> appSettings)
+                              IOptions<AppSettings> appSettings,
+                              IBus bus)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _appSettings = appSettings.Value;
+            _bus = bus;
         }
 
         [HttpPost("nova-conta")]
@@ -52,6 +58,8 @@ namespace ECE.Identidade.API.Controllers
 
             if (result.Succeeded)
             {
+                var sucesso = await RegistrarCliente(usuarioRegistro);
+
                 return CustomResponse(await GerarJwt(usuarioRegistro.Email));
             }
 
@@ -61,6 +69,19 @@ namespace ECE.Identidade.API.Controllers
             }
 
             return CustomResponse();
+        }
+
+        private async Task<ResponseMessage> RegistrarCliente(UsuarioRegistro usuarioRegistro)
+        {
+            var usuario = await _userManager.FindByEmailAsync(usuarioRegistro.Email);
+            var usuarioRegistrado = new UsuarioRegistradoIntegrationEvent(
+                Guid.Parse(usuario.Id), usuarioRegistro.Nome, usuarioRegistro.Email, usuarioRegistro.Cpf);
+
+            _bus = RabbitHutch.CreateBus("host=localhost:5672");
+
+            var sucesso = await _bus.RequestAsync<UsuarioRegistradoIntegrationEvent, ResponseMessage>(usuarioRegistrado);
+
+            return sucesso;
         }
 
         [HttpPost("autenticar")]
