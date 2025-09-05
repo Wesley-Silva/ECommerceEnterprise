@@ -28,13 +28,11 @@ namespace ECE.Identidade.API.Controllers
 
         public AuthController(UserManager<IdentityUser> userManager,
                               SignInManager<IdentityUser> signInManager,
-                              IOptions<AppSettings> appSettings,
-                              IBus bus)
+                              IOptions<AppSettings> appSettings)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _appSettings = appSettings.Value;
-            _bus = bus;
         }
 
         [HttpPost("nova-conta")]
