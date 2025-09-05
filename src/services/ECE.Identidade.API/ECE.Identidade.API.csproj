@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\building blocks\ECE.Core\ECE.Core.csproj" />
+    <ProjectReference Include="..\..\building blocks\ECE.MessageBus\ECE.MessageBus.csproj" />
     <ProjectReference Include="..\..\building blocks\ECE.WebAPI.Core\ECE.WebAPI.Core.csproj" />
   </ItemGroup>
 
