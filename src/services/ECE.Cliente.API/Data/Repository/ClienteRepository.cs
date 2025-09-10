@@ -24,7 +24,7 @@ namespace ECE.Cliente.API.Data.Repository
 
         public async Task<Models.Cliente> ObterPorCpf(string cpf)
         {
-            return await _context.Clientes.FirstOrDefaultAsync(c => c.Cpf.Numero == cpf);
+            return await _context.Clientes.AsNoTracking().FirstOrDefaultAsync(c => c.Cpf.Numero == cpf);
         }
 
         public void Adicionar(Models.Cliente cliente)

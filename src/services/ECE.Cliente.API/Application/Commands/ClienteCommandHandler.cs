@@ -3,6 +3,7 @@ using ECE.Cliente.API.Models;
 using ECE.Core.Messages;
 using FluentValidation.Results;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -29,7 +30,7 @@ namespace ECE.Cliente.API.Application.Commands
 
             var clienteExistente = await _clienteRepository.ObterPorCpf(cliente.Cpf.Numero);
 
-            if (clienteExistente != null)
+            if (!ReferenceEquals(clienteExistente, null))
             {
                 AdicionarErro("Este CPF já está em uso");
                 return ValidationResult;
