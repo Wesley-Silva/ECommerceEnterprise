@@ -1,4 +1,5 @@
-﻿using ECE.WebApp.MVC.Extensions;
+﻿using ECE.WebAPI.Core.Usuario;
+using ECE.WebApp.MVC.Extensions;
 using ECE.WebApp.MVC.Services;
 using ECE.WebApp.MVC.Services.Handlers;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +30,7 @@ namespace ECE.WebApp.MVC.Configuration
                     p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IUser, AspNetUser>();
+            services.AddScoped<IAspNetUser, AspNetUser>();
         }
     }
 

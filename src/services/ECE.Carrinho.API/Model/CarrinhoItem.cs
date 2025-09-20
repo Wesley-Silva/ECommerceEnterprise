@@ -17,5 +17,7 @@ namespace ECE.Carrinho.API.Model
         public string Imagem { get; set; }
 
         public Guid CarrinhoId { get; set; }
+
+        public CarrinhoCliente CarrinhoCliente { get; set; }
     }
 }

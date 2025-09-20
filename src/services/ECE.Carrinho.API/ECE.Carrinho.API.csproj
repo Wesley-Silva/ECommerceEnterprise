@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>15c7c9b4-fb69-443f-ab27-3ae3b35fbd5a</UserSecretsId>
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.30" />
@@ -12,14 +13,12 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.30" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.30" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
 
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\ECE.Identidade.API\ECE.Identidade.API.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Data\" />
 	</ItemGroup>
 
 </Project>

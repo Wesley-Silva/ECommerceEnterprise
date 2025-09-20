@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ECE.WebAPI.Core.Identidade;
+using ECE.Carrinho.API.Data;
 
 namespace ECE.Carrinho.API.Configuration
 {
@@ -12,6 +13,11 @@ namespace ECE.Carrinho.API.Configuration
     {
         public static IServiceCollection AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddDbContext<CarrinhoContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            });
+
             services.AddControllers();
 
             services.AddCors(options =>
