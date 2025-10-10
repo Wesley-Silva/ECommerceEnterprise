@@ -32,7 +32,55 @@ namespace ECE.Carrinho.API.Controllers
         [HttpPost("carrinho")]
         public async Task<IActionResult> AdicionarItemCarrinho(CarrinhoItem item)
         {
+            var carrinho = await ObterCarrinhoCliente();
+
+            if (carrinho == null)
+            {
+                ManipularNovoCarrinho(item);
+            }
+            else
+            {
+                ManipularCarrinhoExistente(carrinho, item);
+            }
+
+            if (!OperacaoValida())
+            {
+                return CustomResponse();
+            }
+
+            var result = await _context.SaveChangesAsync();
+            if (result <= 0)
+            {
+                AdicionarErroProcessamento("Não foi possível persistir os dados no banco");
+            }
+
             return CustomResponse();
+        }
+
+        private void ManipularNovoCarrinho(CarrinhoItem item)
+        {
+            var carrinho = new CarrinhoCliente(_user.ObterUserId());
+            carrinho.AdicionarItem(item);
+
+            _context.CarrinhoCliente.Add(carrinho);
+        }
+        
+        private void ManipularCarrinhoExistente(CarrinhoCliente carrinho, CarrinhoItem item)
+        {
+            var produtoItemExistente = carrinho.CarrinhoItemExistente(item);
+
+            carrinho.AdicionarItem(item);
+
+            if (produtoItemExistente)
+            {
+                _context.CarrinhoItens.Update(carrinho.ObterProdutoId(item.ProdutoId));
+            }
+            else
+            {
+                _context.CarrinhoItens.Add(item);
+            }
+
+            _context.CarrinhoCliente.Update(carrinho);
         }
 
         [HttpPut("carrinho/{produtoId}")]
