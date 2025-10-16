@@ -31,6 +31,11 @@ namespace ECE.Carrinho.API.Model
             Quantidade += unidades;
         }
 
+        internal void AtualizarUnidades(int unidades)
+        {
+            Quantidade = unidades;
+        }
+
         internal decimal CalcularValor()
         {
             return Quantidade * Valor;

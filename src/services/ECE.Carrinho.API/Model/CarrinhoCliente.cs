@@ -62,5 +62,34 @@ namespace ECE.Carrinho.API.Model
 
             CalcularValorCarrinho();
         }
+
+        internal void AtualizarItem(CarrinhoItem item)
+        {
+            if (!item.EhValido())
+            {
+                return;
+            }
+
+            item.AssociarCarrinho(Id);
+
+            var itemExistente = ObterProdutoId(item.ProdutoId);
+
+            Items.Remove(itemExistente);
+            Items.Add(item);
+
+            CalcularValorCarrinho();
+        }
+
+        internal void AtualizarUnidades(CarrinhoItem item, int unidades)
+        {
+            item.AtualizarUnidades(unidades);
+            AtualizarItem(item);
+        }
+
+        internal void RemoverItem(CarrinhoItem item)
+        {
+            Items.Remove(ObterProdutoId(item.ProdutoId));
+            CalcularValorCarrinho();
+        }
     }
 }
