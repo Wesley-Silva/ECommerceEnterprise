@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ECE.Carrinho.API.Controllers
@@ -43,6 +44,7 @@ namespace ECE.Carrinho.API.Controllers
                 ManipularCarrinhoExistente(carrinho, item);
             }
 
+            ValidarCarrinho(carrinho);
             if (!OperacaoValida())
             {
                 return CustomResponse();
@@ -65,6 +67,12 @@ namespace ECE.Carrinho.API.Controllers
 
             carrinho.AtualizarUnidades(itemCarrinho, item.Quantidade);
 
+            ValidarCarrinho(carrinho);
+            if (!OperacaoValida())
+            {
+                return CustomResponse();
+            }
+
             _context.CarrinhoItens.Update(itemCarrinho);
             _context.CarrinhoCliente.Update(carrinho);
 
@@ -78,6 +86,12 @@ namespace ECE.Carrinho.API.Controllers
             var carrinho = await ObterCarrinhoCliente();
             var itemCarrinho = await ObterItemCarrinhoValidado(produtoId, carrinho);
             if (itemCarrinho == null)
+            {
+                return CustomResponse();
+            }
+
+            ValidarCarrinho(carrinho);
+            if (!OperacaoValida())
             {
                 return CustomResponse();
             }
@@ -157,6 +171,17 @@ namespace ECE.Carrinho.API.Controllers
             {
                 AdicionarErroProcessamento("Não foi possível persistir os dados no banco");
             }
+        }
+
+        private bool ValidarCarrinho(CarrinhoCliente carrinho)
+        {
+            if (carrinho.EhValido())
+            {
+                return true;
+            }
+
+            carrinho.ValidationResult.Errors.ToList().ForEach(e => AdicionarErroProcessamento(e.ErrorMessage));
+            return false;
         }
     }
 }
