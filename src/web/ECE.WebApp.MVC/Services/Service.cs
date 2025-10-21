@@ -1,4 +1,5 @@
 ﻿using ECE.WebApp.MVC.Extensions;
+using ECE.WebApp.MVC.Models;
 using Microsoft.Extensions.Options;
 using System;
 using System.Net.Http;
@@ -44,6 +45,11 @@ namespace ECE.WebApp.MVC.Services
 
             response.EnsureSuccessStatusCode();
             return true;
+        }
+
+        protected ResponseResult RetornoOk()
+        {
+            return new ResponseResult();
         }
     }
 }
