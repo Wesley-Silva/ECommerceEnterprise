@@ -43,8 +43,7 @@ namespace ECE.Carrinho.API.Controllers
             {
                 ManipularCarrinhoExistente(carrinho, item);
             }
-
-            ValidarCarrinho(carrinho);
+            
             if (!OperacaoValida())
             {
                 return CustomResponse();
@@ -105,11 +104,21 @@ namespace ECE.Carrinho.API.Controllers
             return CustomResponse();
         }
 
+        private void ManipularNovoCarrinho(CarrinhoItem item)
+        {
+            var carrinho = new CarrinhoCliente(_user.ObterUserId());
+            carrinho.AdicionarItem(item);
+
+            ValidarCarrinho(carrinho);
+            _context.CarrinhoCliente.Add(carrinho);
+        }
+
         private void ManipularCarrinhoExistente(CarrinhoCliente carrinho, CarrinhoItem item)
         {
             var produtoItemExistente = carrinho.CarrinhoItemExistente(item);
 
             carrinho.AdicionarItem(item);
+            ValidarCarrinho(carrinho);
 
             if (produtoItemExistente)
             {
@@ -119,24 +128,9 @@ namespace ECE.Carrinho.API.Controllers
             {
                 _context.CarrinhoItens.Add(item);
             }
-
+            
             _context.CarrinhoCliente.Update(carrinho);
-        }
-
-        private void ManipularNovoCarrinho(CarrinhoItem item)
-        {
-            var carrinho = new CarrinhoCliente(_user.ObterUserId());
-            carrinho.AdicionarItem(item);
-
-            _context.CarrinhoCliente.Add(carrinho);
-        }
-
-        private async Task<CarrinhoCliente> ObterCarrinhoCliente()
-        {
-            return await _context.CarrinhoCliente
-                .Include(c => c.Items)
-                .FirstOrDefaultAsync(c => c.ClienteId == _user.ObterUserId());
-        }
+        }        
 
         private async Task<CarrinhoItem> ObterItemCarrinhoValidado(Guid produtoId, CarrinhoCliente carrinho, CarrinhoItem item = null)
         {
@@ -162,6 +156,13 @@ namespace ECE.Carrinho.API.Controllers
             }
 
             return itemCarrinho;
+        }
+
+        private async Task<CarrinhoCliente> ObterCarrinhoCliente()
+        {
+            return await _context.CarrinhoCliente
+                .Include(c => c.Itens)
+                .FirstOrDefaultAsync(c => c.ClienteId == _user.ObterUserId());
         }
 
         private async Task PersistirDados()

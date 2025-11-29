@@ -13,7 +13,7 @@ namespace ECE.Carrinho.API.Model
         public Guid Id { get; set; }
         public Guid ClienteId { get; set; }
         public decimal ValorTotal { get; set; }
-        public List<CarrinhoItem> Items { get; set; } = new List<CarrinhoItem>();
+        public List<CarrinhoItem> Itens { get; set; } = new List<CarrinhoItem>();
         public ValidationResult ValidationResult { get; set; }
 
         public CarrinhoCliente(Guid clienteId)
@@ -29,17 +29,17 @@ namespace ECE.Carrinho.API.Model
 
         internal void CalcularValorCarrinho()
         {
-            ValorTotal = Items.Sum(p => p.CalcularValor());
+            ValorTotal = Itens.Sum(p => p.CalcularValor());
         }
 
         internal bool CarrinhoItemExistente(CarrinhoItem item)
         {
-            return Items.Any(p => p.ProdutoId == item.ProdutoId);
+            return Itens.Any(p => p.ProdutoId == item.ProdutoId);
         }
 
         internal CarrinhoItem ObterProdutoId(Guid produtoId)
         {
-            return Items.FirstOrDefault(p => p.ProdutoId == produtoId);
+            return Itens.FirstOrDefault(p => p.ProdutoId == produtoId);
         }
 
         internal void AdicionarItem(CarrinhoItem item)
@@ -52,10 +52,10 @@ namespace ECE.Carrinho.API.Model
                 itemExistente.AdicionarUnidades(item.Quantidade);
 
                 item = itemExistente;
-                Items.Remove(itemExistente);
+                Itens.Remove(itemExistente);
             }
 
-            Items.Add(item);
+            Itens.Add(item);
 
             CalcularValorCarrinho();
         }
@@ -66,8 +66,8 @@ namespace ECE.Carrinho.API.Model
 
             var itemExistente = ObterProdutoId(item.ProdutoId);
 
-            Items.Remove(itemExistente);
-            Items.Add(item);
+            Itens.Remove(itemExistente);
+            Itens.Add(item);
 
             CalcularValorCarrinho();
         }
@@ -80,13 +80,13 @@ namespace ECE.Carrinho.API.Model
 
         internal void RemoverItem(CarrinhoItem item)
         {
-            Items.Remove(ObterProdutoId(item.ProdutoId));
+            Itens.Remove(ObterProdutoId(item.ProdutoId));
             CalcularValorCarrinho();
         }
 
         internal bool EhValido()
         {
-            var erros = Items.SelectMany(i => new CarrinhoItem.ItemCarrinhoValidation().Validate(i).Errors).ToList();
+            var erros = Itens.SelectMany(i => new CarrinhoItem.ItemCarrinhoValidation().Validate(i).Errors).ToList();
             erros.AddRange(new CarrinhoClienteValidation().Validate(this).Errors);
             ValidationResult = new ValidationResult(erros);
 
@@ -101,7 +101,7 @@ namespace ECE.Carrinho.API.Model
                     .NotEqual(Guid.Empty)
                     .WithMessage("Cliente não reconhecido");
 
-                RuleFor(c => c.Items.Count)
+                RuleFor(c => c.Itens.Count)
                     .GreaterThan(0)
                     .WithMessage("O carrinho não possui itens");
 

@@ -6,7 +6,7 @@ namespace ECE.WebApp.MVC.Models
     public class CarrinhoViewModel
     {
         public decimal ValorTotal { get; set; }
-        public List<CarrinhoViewModel> Itens { get; set; } = new List<CarrinhoViewModel>();
+        public List<ItemProdutoViewModel> Itens { get; set; } = new List<ItemProdutoViewModel>();
     }
 
     public class ItemProdutoViewModel

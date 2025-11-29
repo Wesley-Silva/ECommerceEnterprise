@@ -30,6 +30,12 @@ namespace ECE.WebApp.MVC.Controllers
         {
             var produto = await _catalogoService.ObterPorId(itemProduto.ProdutoId);
 
+            ValidarItemCarrinho(produto, itemProduto.Quantidade);
+            if (!OperacaoValida())
+            {
+                return View("Index", await _carrinhoService.ObterCarrinho());
+            }
+
             itemProduto.Nome = produto.Nome;
             itemProduto.Valor = produto.Valor;
             itemProduto.Imagem = produto.Imagem;
@@ -45,15 +51,16 @@ namespace ECE.WebApp.MVC.Controllers
         }
 
         [HttpPost]
-        [Route("carrinho/adicionar-item")]
+        [Route("carrinho/atualizar-item")]
         public async Task<ActionResult> AtualizarItemCarrinho(Guid produtoId, int quantidade)
         {
             var produto = await _catalogoService.ObterPorId(produtoId);
 
-            if (produto == null)
+            ValidarItemCarrinho(produto, quantidade);
+            if (!OperacaoValida())
             {
-                AdicionarErrosValidacao("Produto inexistente");
-            }
+                return View("Index", await _carrinhoService.ObterCarrinho());
+            }           
 
             var itemProduto = new ItemProdutoViewModel
             {
@@ -79,7 +86,7 @@ namespace ECE.WebApp.MVC.Controllers
 
             if (produto == null)
             {
-                AdicionarErrosValidacao("Produto inexistente");
+                AdicionarErroValidacao("Produto inexistente");
                 return View("Index", await _carrinhoService.ObterCarrinho());
             }
 
@@ -91,6 +98,23 @@ namespace ECE.WebApp.MVC.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        private void ValidarItemCarrinho(ProdutoViewModel produto, int quantidade)
+        {
+
+            if (produto == null)
+            {
+                AdicionarErroValidacao("Produto inexistente!");
+            }
+            if (quantidade < 1)
+            {
+                AdicionarErroValidacao($"Escolha ao menos uma unidade do produto {produto.Nome}");
+            }
+            if (quantidade > produto.QuantidadeEstoque)
+            {
+                AdicionarErroValidacao($"O produto {produto.Nome} possui {produto.QuantidadeEstoque} unidades em estoque, você selecionou {quantidade}");
+            }
         }
     }
 }

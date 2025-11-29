@@ -9,33 +9,54 @@ using System.Threading.Tasks;
 
 namespace ECE.WebApp.MVC.Services
 {
-    public class CatalogoService : Service, ICatalogoService
+    public class CarrinhoService : Service, ICarrinhoService
     {
         private readonly HttpClient _httpClient;
-        private readonly AppSettings _settings;
 
-        public CatalogoService(HttpClient httpClient, IOptions<AppSettings> settings)
+        public CarrinhoService(HttpClient httpClient, IOptions<AppSettings> settings)
         {
             _httpClient = httpClient;
-            _settings = settings.Value;
+            _httpClient.BaseAddress = new Uri(settings.Value.CarrinhoUrl);
         }
 
-        public async Task<ProdutoViewModel> ObterPorId(Guid id)
+        public async Task<CarrinhoViewModel> ObterCarrinho()
         {
-            var response = await _httpClient.GetAsync($"{_settings.CatalogoUrl}/catalogo/produtos/{id}");
+            var response = await _httpClient.GetAsync("/carrinho/");
 
             TratarErrosResponse(response);
 
-            return await DeserializarObjetoResponse<ProdutoViewModel>(response);
+            return await DeserializarObjetoResponse<CarrinhoViewModel>(response);
         }
 
-        public async Task<IEnumerable<ProdutoViewModel>> ObterTodos()
+        public async Task<ResponseResult> AdicionarItemCarrinho(ItemProdutoViewModel produto)
         {
-            var response = await _httpClient.GetAsync($"{_settings.CatalogoUrl}/catalogo/produtos/");
+            var itemContent = ObterConteudo(produto);
 
-            TratarErrosResponse(response);
+            var response = await _httpClient.PostAsync("/carrinho/", itemContent);
 
-            return await DeserializarObjetoResponse<IEnumerable<ProdutoViewModel>>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
+
+            return RetornoOk();
+        }
+
+        public async Task<ResponseResult> AtualizarItemCarrinho(Guid produtoId, ItemProdutoViewModel produto)
+        {
+            var itemContent = ObterConteudo(produto);
+
+            var response = await _httpClient.PutAsync($"/carrinho/{produto.ProdutoId}", itemContent);
+
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
+
+            return RetornoOk();
+        }
+
+        public async Task<ResponseResult> RemoverItemCarrinho(Guid produtoId)
+        {
+            var response = await _httpClient.DeleteAsync($"/carrinho/{produtoId}");
+
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
+
+            return RetornoOk();
         }
     }
 }

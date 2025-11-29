@@ -31,7 +31,7 @@ namespace ECE.Carrinho.API.Data
                 .HasName("IDX_Cliente");
 
             modelBuilder.Entity<CarrinhoCliente>()
-                .HasMany(c => c.Items)
+                .HasMany(c => c.Itens)
                 .WithOne(i => i.CarrinhoCliente)
                 .HasForeignKey(c => c.CarrinhoId);
 

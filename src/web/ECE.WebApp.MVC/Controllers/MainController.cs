@@ -19,7 +19,7 @@ namespace ECE.WebApp.MVC.Controllers
             return false;
         }
 
-        protected void AdicionarErrosValidacao(string message)
+        protected void AdicionarErroValidacao(string message)
         {
             ModelState.AddModelError(string.Empty, message);
         }
