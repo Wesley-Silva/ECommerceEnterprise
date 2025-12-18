@@ -12,12 +12,28 @@ namespace ECE.Catalogo.API
     {
         public IConfiguration Configuration { get; }
 
+        //public Startup(IHostEnvironment hostEnvironment)
+        //{
+        //    var builder = new ConfigurationBuilder()
+        //        .SetBasePath(hostEnvironment.ContentRootPath)
+        //        .AddJsonFile("appsettings.json", true, true)
+        //        .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
+        //        .AddEnvironmentVariables();
+
+        //    if (hostEnvironment.IsDevelopment())
+        //    {
+        //        builder.AddUserSecrets<Startup>();
+        //    }
+
+        //    Configuration = builder.Build();
+        //}
+
         public Startup(IHostEnvironment hostEnvironment)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(hostEnvironment.ContentRootPath)
-                .AddJsonFile("appsettings.json", true, true)
-                .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
             if (hostEnvironment.IsDevelopment())
@@ -26,6 +42,14 @@ namespace ECE.Catalogo.API
             }
 
             Configuration = builder.Build();
+
+            // DEBUG: Log para verificar o carregamento
+            var connString = Configuration.GetConnectionString("DefaultConnection");
+            System.Diagnostics.Debug.WriteLine($"=== STARTUP DEBUG ===");
+            System.Diagnostics.Debug.WriteLine($"Environment: {hostEnvironment.EnvironmentName}");
+            System.Diagnostics.Debug.WriteLine($"ContentRootPath: {hostEnvironment.ContentRootPath}");
+            System.Diagnostics.Debug.WriteLine($"Connection String: {connString ?? "NULL"}");
+            System.Diagnostics.Debug.WriteLine($"===================");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
