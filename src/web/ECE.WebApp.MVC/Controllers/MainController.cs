@@ -1,4 +1,5 @@
-﻿using ECE.WebApp.MVC.Models;
+﻿using ECE.Core.Comunication;
+using ECE.WebApp.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 

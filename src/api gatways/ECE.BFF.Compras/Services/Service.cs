@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using ECE.Core.Comunication;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -35,6 +36,11 @@ namespace ECE.BFF.Compras.Services
 
             response.EnsureSuccessStatusCode();
             return true;
+        }
+
+        protected ResponseResult RetornoOk()
+        {
+            return new ResponseResult();
         }
     }
 }

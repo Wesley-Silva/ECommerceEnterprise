@@ -1,9 +1,8 @@
-﻿using ECE.WebApp.MVC.Extensions;
+﻿using ECE.Core.Comunication;
+using ECE.WebApp.MVC.Extensions;
 using ECE.WebApp.MVC.Models;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 

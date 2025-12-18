@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
+﻿using ECE.Core.Comunication;
 using ECE.WebApp.MVC.Extensions;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ECE.WebApp.MVC.Models
 {

@@ -1,4 +1,5 @@
-﻿using ECE.WebApp.MVC.Extensions;
+﻿using ECE.Core.Comunication;
+using ECE.WebApp.MVC.Extensions;
 using ECE.WebApp.MVC.Models;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
@@ -12,7 +13,7 @@ namespace ECE.WebApp.MVC.Services
         private readonly AppSettings _settings;
 
         public AutenticacaoService(HttpClient httpClient, IOptions<AppSettings> settings)
-        {           
+        {
             _httpClient = httpClient;
             _settings = settings.Value;
         }
