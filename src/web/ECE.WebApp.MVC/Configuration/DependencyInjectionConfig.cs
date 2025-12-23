@@ -46,7 +46,7 @@ namespace ECE.WebApp.MVC.Configuration
         }
     }
 
-    public class PolicyExtensions
+    public static class PolicyExtensions
     {
         public static AsyncRetryPolicy<HttpResponseMessage> EsperarTentar()
         { 
