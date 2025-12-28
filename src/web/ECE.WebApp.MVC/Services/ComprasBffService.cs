@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace ECE.WebApp.MVC.Services
 {
-    public class CatalogoService : Service, ICatalogoService
+    public class ComprasBffService : Service, ICatalogoService
     {
         private readonly HttpClient _httpClient;
         private readonly AppSettings _settings;
 
-        public CatalogoService(HttpClient httpClient, IOptions<AppSettings> settings)
+        public ComprasBffService(HttpClient httpClient, IOptions<AppSettings> settings)
         {
             _httpClient = httpClient;
             _settings = settings.Value;
