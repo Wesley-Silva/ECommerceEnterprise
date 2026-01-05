@@ -15,8 +15,11 @@
     <Folder Include="Application\Commands\" />
     <Folder Include="Application\Events\" />
     <Folder Include="Application\Queries\" />
-    <Folder Include="Configuration\" />
     <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ECE.Pedido.Infra\ECE.Pedido.Infra.csproj" />
   </ItemGroup>
 
 

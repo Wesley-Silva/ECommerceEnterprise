@@ -5,9 +5,9 @@ namespace ECE.Pedido.Infra.Data.Repository
 {
     public class VoucherRepository : IVoucherRepository
     {
-        private readonly PedidoContext _context;
+        private readonly PedidosContext _context;
 
-        public VoucherRepository(PedidoContext context)
+        public VoucherRepository(PedidosContext context)
         {
             _context = context;
         }

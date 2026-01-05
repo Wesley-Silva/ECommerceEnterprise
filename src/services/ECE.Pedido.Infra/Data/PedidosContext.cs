@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ECE.Pedido.Infra.Data
 {
-    public class PedidoContext : DbContext, IUnitOfWork
+    public class PedidosContext : DbContext, IUnitOfWork
     {
         private readonly IMediatorHandler _mediatorHandler;
 
-        public PedidoContext(DbContextOptions<PedidoContext> options, IMediatorHandler mediatorHandler)
+        public PedidosContext(DbContextOptions<PedidosContext> options, IMediatorHandler mediatorHandler)
             : base(options)
         {
             _mediatorHandler = mediatorHandler;
@@ -28,7 +28,7 @@ namespace ECE.Pedido.Infra.Data
             modelBuilder.Ignore<Event>();
             modelBuilder.Ignore<ValidationResult>();
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PedidoContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PedidosContext).Assembly);
         }
 
         public async Task<bool> Commit()
