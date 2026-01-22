@@ -1,5 +1,8 @@
 ﻿using ECE.Core.Data;
 using ECE.Pedido.Domain;
+using ECE.Pedido.Domain.Vouchers;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace ECE.Pedido.Infra.Data.Repository
 {
@@ -13,6 +16,11 @@ namespace ECE.Pedido.Infra.Data.Repository
         }
 
         public IUnitOfWork unitOfWork => (IUnitOfWork)_context;
+
+        public async Task<Voucher> ObterVoucherPorCodigo(string codigo)
+        {
+            return await _context.Vouchers.FirstOrDefaultAsync(p => p.Codigo == codigo);
+        }
 
         public void Dispose()
         {

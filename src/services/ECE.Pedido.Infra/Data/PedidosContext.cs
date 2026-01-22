@@ -2,6 +2,7 @@
 using ECE.Core.Data;
 using ECE.Core.Mediator;
 using ECE.Core.Messages;
+using ECE.Pedido.Domain.Vouchers;
 using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -18,6 +19,13 @@ namespace ECE.Pedido.Infra.Data
         {
             _mediatorHandler = mediatorHandler;
         }
+
+        public PedidosContext(DbContextOptions<PedidosContext> options)
+    : base(options)
+        {
+        }
+
+        public DbSet<Voucher> Vouchers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
