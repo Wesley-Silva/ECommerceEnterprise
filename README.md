@@ -30,6 +30,7 @@ O E-commerce Enterprise oferece aos usuários a opção de login ou registro usa
 ![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/Arquitetura.jpg)
 ![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/fluxo-autenticacao-webapp.jpg)
 ![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/cliente-negocio.jpg)
+![Tela](https://github.com/Wesley-Silva/ECommerceEnterprise/blob/main/src/web/ECE.WebApp.MVC/wwwroot/images/BFF.jpg)
 
 <div id='telas'/> 
   
