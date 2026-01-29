@@ -28,7 +28,9 @@ namespace ECE.Pedido.Domain.Vouchers
 
         public void MarcarComoUtilizado()
         {
-
+            Ativo = false;
+            Utilizado = true;
+            Quantidade = 0;
         }
     }
 }
