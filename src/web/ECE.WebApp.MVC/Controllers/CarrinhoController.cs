@@ -1,12 +1,13 @@
 ﻿using ECE.WebApp.MVC.Models;
 using ECE.WebApp.MVC.Services;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
 namespace ECE.WebApp.MVC.Controllers
 {
+    [Authorize]
     public class CarrinhoController : MainController
     {
         private readonly IComprasBFFService _comprasBffService;
@@ -25,7 +26,7 @@ namespace ECE.WebApp.MVC.Controllers
         [HttpPost]
         [Route("carrinho/adicionar-item")]
         public async Task<ActionResult> AdicionarItemCarrinho(ItemCarrinhoViewModel itemCarrinho)
-        {            
+        {
             var resposta = await _comprasBffService.AdicionarItemCarrinho(itemCarrinho);
 
             if (ResponsePossuiErros(resposta))

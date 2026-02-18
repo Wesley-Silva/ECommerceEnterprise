@@ -6,7 +6,7 @@ using System.Net.Http;
 
 namespace ECE.WebAPI.Core.Extensions
 {
-    public static class PolicyExtensions
+    public static class PollyExtensions
     {
         public static AsyncRetryPolicy<HttpResponseMessage> EsperarTentar()
         {

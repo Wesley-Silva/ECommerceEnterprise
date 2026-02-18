@@ -30,7 +30,7 @@ namespace ECE.WebApp.MVC.Configuration
                 .AddTransientHttpErrorPolicy(
                     p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
                         
-            services.AddHttpClient<ICatalogoService, ComprasBffService>()
+            services.AddHttpClient<ICatalogoService, CatalogoService>()
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
                 .AddPolicyHandler(PolicyExtensions.EsperarTentar())
                 .AddTransientHttpErrorPolicy(
