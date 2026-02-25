@@ -2,6 +2,7 @@
 using ECE.Core.Data;
 using ECE.Core.Mediator;
 using ECE.Core.Messages;
+using ECE.Pedido.Domain.Vouchers;
 using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -9,15 +10,17 @@ using System.Threading.Tasks;
 
 namespace ECE.Pedido.Infra.Data
 {
-    public class PedidoContext : DbContext, IUnitOfWork
+    public class PedidosContext : DbContext, IUnitOfWork
     {
         private readonly IMediatorHandler _mediatorHandler;
 
-        public PedidoContext(DbContextOptions<PedidoContext> options, IMediatorHandler mediatorHandler)
+        public PedidosContext(DbContextOptions<PedidosContext> options, IMediatorHandler mediatorHandler)
             : base(options)
         {
             _mediatorHandler = mediatorHandler;
         }
+
+        public DbSet<Voucher> Vouchers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,7 +31,7 @@ namespace ECE.Pedido.Infra.Data
             modelBuilder.Ignore<Event>();
             modelBuilder.Ignore<ValidationResult>();
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PedidoContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PedidosContext).Assembly);
         }
 
         public async Task<bool> Commit()

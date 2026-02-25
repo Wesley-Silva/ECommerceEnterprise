@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Mappings\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ECE.Cliente.API\ECE.Cliente.API.csproj" />
     <ProjectReference Include="..\ECE.Pedido.Domain\ECE.Pedido.Domain.csproj" />
   </ItemGroup>
