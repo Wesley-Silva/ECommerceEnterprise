@@ -1,4 +1,5 @@
 ﻿using ECE.Core.Mediator;
+using ECE.Pedido.API.Application.Queries;
 using ECE.Pedido.Domain;
 using ECE.Pedido.Infra.Data;
 using ECE.Pedido.Infra.Data.Repository;
@@ -19,6 +20,7 @@ namespace ECE.Pedido.API.Configuration
                         
             // Application
             services.AddScoped<IMediatorHandler, MediatorHandler>();
+            services.AddScoped<IVoucherQueries, VoucherQueries>();
 
             // Data          
             services.AddScoped<IVoucherRepository, VoucherRepository>();
