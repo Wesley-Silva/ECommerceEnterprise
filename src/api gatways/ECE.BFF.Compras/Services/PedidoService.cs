@@ -32,6 +32,8 @@ namespace ECE.BFF.Compras.Services
                 return null;
             }
 
+            TratarErrosResponse(response);
+
             return await DeserializarObjetoResponse<VoucherDTO>(response);
         }
     }

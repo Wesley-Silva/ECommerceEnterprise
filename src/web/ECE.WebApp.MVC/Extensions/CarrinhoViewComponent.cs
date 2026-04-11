@@ -7,9 +7,9 @@ namespace ECE.WebApp.MVC.Extensions
 {
     public class CarrinhoViewComponent : ViewComponent
     {
-        private readonly IComprasBFFService _comprasBffService;
+        private readonly IComprasBffService _comprasBffService;
 
-        public CarrinhoViewComponent(IComprasBFFService comprasBffService)
+        public CarrinhoViewComponent(IComprasBffService comprasBffService)
         {
             _comprasBffService = comprasBffService;
         }

@@ -56,13 +56,13 @@ namespace ECE.Carrinho.API.Model
                     desconto = (valor * Voucher.Percentual.Value) / 100;
                     valor -= desconto;
                 }
-                else
+            }
+            else
+            {
+                if (Voucher.ValorDesconto.HasValue)
                 {
-                    if (Voucher.ValorDesconto.HasValue)
-                    {
-                        desconto = Voucher.ValorDesconto.Value;
-                        valor -= desconto;
-                    }
+                    desconto = Voucher.ValorDesconto.Value;
+                    valor -= desconto;
                 }
             }
 

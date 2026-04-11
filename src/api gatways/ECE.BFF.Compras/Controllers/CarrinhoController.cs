@@ -1,10 +1,13 @@
-﻿using ECE.BFF.Compras.Models;
+﻿using ECE.BFF.Compras.Extensions;
+using ECE.BFF.Compras.Models;
 using ECE.BFF.Compras.Services;
 using ECE.WebAPI.Core.Controller;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ECE.BFF.Compras.Controllers
@@ -15,14 +18,17 @@ namespace ECE.BFF.Compras.Controllers
         private readonly ICarrinhoService _carrinhoService;
         private readonly ICatalogoService _catalogoService;
         private readonly IPedidoService _pedidoService;
+        private readonly AppServicesSettings _appServices;
 
         public CarrinhoController(ICarrinhoService carrinhoService,
                                   ICatalogoService catalogoService,
-                                  IPedidoService pedidoService)
+                                  IPedidoService pedidoService,
+                                  IOptions<AppServicesSettings> appServices)
         {
             _carrinhoService = carrinhoService;
             _catalogoService = catalogoService;
             _pedidoService = pedidoService;
+            _appServices = appServices.Value;
         }
 
         [HttpGet]
@@ -101,6 +107,7 @@ namespace ECE.BFF.Compras.Controllers
         public async Task<IActionResult> AplicarVoucher([FromBody] string voucherCodigo)
         {
             var voucher = await _pedidoService.ObterVoucherPorCodigo(voucherCodigo);
+
             if (voucher is null)
             {
                 AdicionarErroProcessamento("Voucher inválido ou não encontrado!");

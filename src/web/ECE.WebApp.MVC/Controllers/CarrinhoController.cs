@@ -10,9 +10,9 @@ namespace ECE.WebApp.MVC.Controllers
     [Authorize]
     public class CarrinhoController : MainController
     {
-        private readonly IComprasBFFService _comprasBffService;
+        private readonly IComprasBffService _comprasBffService;
 
-        public CarrinhoController(IComprasBFFService comprasBffService)
+        public CarrinhoController(IComprasBffService comprasBffService)
         {
             _comprasBffService = comprasBffService;
         }
@@ -62,6 +62,20 @@ namespace ECE.WebApp.MVC.Controllers
         public async Task<ActionResult> RemoverItemCarrinho(Guid produtoId)
         {
             var resposta = await _comprasBffService.RemoverItemCarrinho(produtoId);
+
+            if (ResponsePossuiErros(resposta))
+            {
+                return View("Index", await _comprasBffService.ObterCarrinho());
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Route("carrinho/aplicar-voucher")]
+        public async Task<ActionResult> AplicarVoucher(string voucherCodigo)
+        {
+            var resposta = await _comprasBffService.AplicarVoucherCarrinho(voucherCodigo);
 
             if (ResponsePossuiErros(resposta))
             {

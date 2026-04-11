@@ -16,17 +16,17 @@ namespace ECE.WebApp.MVC.Services
         Task<ResponseResult> AdicionarItemCarrinho(ItemCarrinhoViewModel carrinho);
         Task<ResponseResult> AtualizarItemCarrinho(Guid produtoId, ItemCarrinhoViewModel carrinho);
         Task<ResponseResult> RemoverItemCarrinho(Guid produtoId);
+        Task<ResponseResult> AplicarVoucherCarrinho(string voucher);
     }
 
     public class ComprasBffService : Service, IComprasBffService
     {
         private readonly HttpClient _httpClient;
-        private readonly AppSettings _settings;
 
         public ComprasBffService(HttpClient httpClient, IOptions<AppSettings> settings)
         {
             _httpClient = httpClient;
-            _settings = settings.Value;
+            _httpClient.BaseAddress = new Uri(settings.Value.ComprasBffUrl);
         }
 
         #region Carrinho
@@ -76,6 +76,19 @@ namespace ECE.WebApp.MVC.Services
             return RetornoOk();
         }
 
+        public async Task<ResponseResult> AplicarVoucherCarrinho(string voucher)
+        {
+            var itemContent = ObterConteudo(voucher);
+
+            var response = await _httpClient.PostAsync("/compras/carrinho/aplicar-voucher/", itemContent);
+
+            if (!TratarErrosResponse(response))
+            {
+                return await DeserializarObjetoResponse<ResponseResult>(response);
+            }
+
+            return RetornoOk();
+        }
         #endregion
     }
 }
