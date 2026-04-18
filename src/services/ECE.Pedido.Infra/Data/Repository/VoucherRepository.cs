@@ -17,14 +17,19 @@ namespace ECE.Pedido.Infra.Data.Repository
 
         public IUnitOfWork unitOfWork => (IUnitOfWork)_context;
 
-        public void Dispose()
+        public void Atualizar(Voucher voucher)
         {
-            _context.Dispose();
+            _context.Vouchers.Update(voucher);
         }
 
         public async Task<Voucher> ObterVoucherPorCodigo(string codigo)
         {
             return await _context.Vouchers.FirstOrDefaultAsync(c => c.Codigo == codigo);
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }
