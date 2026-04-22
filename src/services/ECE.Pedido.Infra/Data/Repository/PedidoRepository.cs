@@ -3,6 +3,7 @@ using ECE.Pedido.Domain.Pedidos;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +19,11 @@ namespace ECE.Pedido.Infra.Data.Repository
         }
 
         public IUnitOfWork unitOfWork => _context;
+
+        public DbConnection ObterConexao()
+        {
+            return _context.Database.GetDbConnection();
+        }
 
         public async Task<Domain.Pedidos.Pedido> ObterPedidoId(Guid id)
         {

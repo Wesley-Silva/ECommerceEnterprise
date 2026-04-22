@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Threading.Tasks;
 
 namespace ECE.Pedido.Domain.Pedidos
@@ -12,6 +13,8 @@ namespace ECE.Pedido.Domain.Pedidos
         Task<IEnumerable<Pedido>> ObterListaPorClienteId(Guid clienteId);
         void Adicionar(Pedido pedido);
         void Atualizar(Pedido pedido);
+        DbConnection ObterConexao();
+
 
         /* Pedido Item */
         Task<PedidoItem> ObterItemPorId(Guid id);
