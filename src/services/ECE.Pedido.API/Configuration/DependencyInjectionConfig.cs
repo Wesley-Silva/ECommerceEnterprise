@@ -1,5 +1,6 @@
 ﻿using ECE.Core.Mediator;
 using ECE.Pedido.API.Application.Commands;
+using ECE.Pedido.API.Application.Events;
 using ECE.Pedido.API.Application.Queries;
 using ECE.Pedido.Domain;
 using ECE.Pedido.Domain.Pedidos;
@@ -24,9 +25,13 @@ namespace ECE.Pedido.API.Configuration
             // Commands
             services.AddScoped<IRequestHandler<AdicionarPedidoCommand, ValidationResult>, PedidoCommandHandler>();
 
+            // Events
+            services.AddScoped<INotificationHandler<PedidoRealizadoEvent>, PedidoEventHandler>();
+
             // Application
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IVoucherQueries, VoucherQueries>();
+            services.AddScoped<IPedidoQueries, PedidoQueries>();
 
             // Data
             services.AddScoped<IPedidoRepository, PedidoRepository>();
