@@ -16,23 +16,27 @@ namespace ECE.WebApp.MVC.Services.Handlers
             _user = user;
         }
 
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var authorizationHeader = _user.ObterHttpContext().Request.Headers["Authorization"];
+            var authorizationHeader = _user.ObterHttpContext()?.Request?.Headers["Authorization"].ToString();
 
             if (!string.IsNullOrEmpty(authorizationHeader))
             {
+                // ensure we don't add duplicate header
+                if (request.Headers.Contains("Authorization"))
+                    request.Headers.Remove("Authorization");
+
                 request.Headers.Add("Authorization", new List<string>() { authorizationHeader });
             }
 
             var token = _user.ObterUserToken();
 
-            if (token != null)
+            if (!string.IsNullOrWhiteSpace(token))
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
 
-            return base.SendAsync(request, cancellationToken);
+            return await base.SendAsync(request, cancellationToken);
         }
     }
 }

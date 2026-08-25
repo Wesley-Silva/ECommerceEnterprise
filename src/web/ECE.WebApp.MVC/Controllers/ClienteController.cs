@@ -17,6 +17,7 @@ namespace ECE.WebApp.MVC.Controllers
             _clienteService = clienteService;
         }
 
+        [HttpPost]
         public async Task<IActionResult> NovoEndereco(EnderecoViewModel endereco)
         {
             var response = await _clienteService.AdiconarEndereco(endereco);

@@ -56,5 +56,11 @@ namespace ECE.Cliente.API.Application.Commands
                     .NotEmpty().WithMessage("Informe o Estado.");
             }
         }
+
+        public override bool EhValido()
+        {
+            ValidationResult = new EnderecoValidation().Validate(this);
+            return ValidationResult.IsValid;
+        }
     }
 }

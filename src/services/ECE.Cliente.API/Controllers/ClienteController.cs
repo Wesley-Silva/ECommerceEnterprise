@@ -15,13 +15,11 @@ namespace ECE.Cliente.API.Controllers
         private readonly IMediatorHandler _mediator;
         private readonly IAspNetUser _user;
 
-        public ClienteController(IMediatorHandler mediator,
-            IAspNetUser user,
-            IClienteRepository clienteRepository)
+        public ClienteController(IClienteRepository clienteRepository, IMediatorHandler mediator, IAspNetUser user)
         {
+            _clienteRepository = clienteRepository;
             _mediator = mediator;
             _user = user;
-            _clienteRepository = clienteRepository;
         }
 
         [HttpGet("cliente/endereco")]
@@ -29,10 +27,12 @@ namespace ECE.Cliente.API.Controllers
         {
             var endereco = await _clienteRepository.ObterEnderecoPorId(_user.ObterUserId());
 
-            return endereco == null ? NotFound() : CustomResponse(endereco);
+            // Always return the response using CustomResponse. Upstream callers expect a success response
+            // even when there is no address (null) instead of a404 NotFound.
+            return CustomResponse(endereco);
         }
 
-        [HttpGet("cliente/endereco")]
+        [HttpPost("cliente/endereco")]
         public async Task<IActionResult> AdicionarEndereco(AdicionarEnderecoCommand endereco)
         {
             endereco.ClienteId = _user.ObterUserId();

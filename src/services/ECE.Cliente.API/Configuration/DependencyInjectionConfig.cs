@@ -28,7 +28,6 @@ namespace ECE.Cliente.API.Configuration
             services.AddScoped<INotificationHandler<ClienteRegistradoEvent>, ClienteEventHandler>();
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
-            services.AddScoped<ClientesContext>();
         }
     }
 }

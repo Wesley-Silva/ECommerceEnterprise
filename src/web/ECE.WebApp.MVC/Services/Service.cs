@@ -27,7 +27,15 @@ namespace ECE.WebApp.MVC.Services
                 PropertyNameCaseInsensitive = true
             };
 
-            return JsonSerializer.Deserialize<T>(await responseMessage.Content.ReadAsStringAsync(), options);
+            var content = await responseMessage.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrWhiteSpace(content))
+            {
+                // No content to deserialize (e.g., HTTP204 NoContent) -> return default(T)
+                return default;
+            }
+
+            return JsonSerializer.Deserialize<T>(content, options);
         }
 
         protected bool TratarErrosResponse(HttpResponseMessage response)

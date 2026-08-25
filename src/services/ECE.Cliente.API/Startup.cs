@@ -1,4 +1,6 @@
 using ECE.Cliente.API.Configuration;
+using ECE.Cliente.API.Data.Repository;
+using ECE.Cliente.API.Models;
 using ECE.WebAPI.Core.Identidade;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -40,6 +42,9 @@ namespace ECE.Cliente.API
             services.AddMediatR(typeof(Startup));
 
             services.RegisterServices();
+
+            // Explicit registration to ensure the repository is available for controller activation
+            //services.AddScoped<IClienteRepository, ClienteRepository>();
 
             services.AddMessageBusConfiguration(Configuration);
         }
