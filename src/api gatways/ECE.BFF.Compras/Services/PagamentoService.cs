@@ -17,7 +17,7 @@ namespace ECE.BFF.Compras.Services
         public PagamentoService(HttpClient httpClient, IOptions<AppServicesSettings> settings)
         {
             _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri(settings.Value.CatalogoUrl);
+            _httpClient.BaseAddress = new Uri(settings.Value.PagamentoUrl);
         }
     }
 }
